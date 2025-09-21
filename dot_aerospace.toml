@@ -80,7 +80,11 @@ run = ['move-node-to-workspace 1󱉲']
 
 [[on-window-detected]]
 if.app-id = "com.apple.Notes"
-run = ['move-node-to-workspace 1󱉲']
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-id = "com.apple.LinkedNotesUIService"
+run = ['layout floating']
 
 [[on-window-detected]]
 if.app-id = "com.apple.MobileSMS"
@@ -100,10 +104,6 @@ run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
 if.app-id = "com.apple.iphonesimulator"
-run = ['move-node-to-workspace 3󱃖']
-
-[[on-window-detected]]
-if.app-id = "com.microsoft.VSCode"
 run = ['move-node-to-workspace 3󱃖']
 
 [[on-window-detected]]
@@ -130,6 +130,10 @@ run = ['move-node-to-workspace 7󰘸']
 if.app-id = "com.microsoft.VSCode"
 if.window-title-regex-substring = ".*Lavish Rides$"
 run = ['move-node-to-workspace 8󱥴']
+
+[[on-window-detected]]
+if.app-id = "com.microsoft.VSCode"
+run = ['move-node-to-workspace 3󱃖']
 
 [[on-window-detected]]
 if.app-id = "com.apple.systempreferences"
