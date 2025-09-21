@@ -10,26 +10,39 @@ add_workspace_if_missing() {
     
     # Check if workspace already exists
     if ! sketchybar --query space.$sid >/dev/null 2>&1; then
-        local label
+        # Label is sid which if it contains more than a number it should strip out the number in front
         if [[ "$sid" =~ ^[0-9]+$ ]]; then
             label="$sid"
         else
-            label="${sid#[0-9]*}"
+            # Strip only leading digits
+            icon="$(echo "$sid" | sed -E 's/^[0-9]+//')"
+            # label should be the numbers from above
+            label="$(echo "$sid" | sed -E 's/[^0-9]+//g')"
+        fi
+        # Set background based on focused item, focused background should be 0x88cc5500
+        if [ "$(aerospace list-workspaces --focused)" = "$sid" ]; then
+            background=0x88cc5500
+        else
+            background=0x22f0f0f0
         fi
         echo "Adding new workspace $sid with label $label on monitor $monitor"
         sketchybar --add item space.$sid left \
             --subscribe space.$sid aerospace_workspace_change display_change system_woke \
             --set space.$sid \
             display=$(( monitor == 1 ? 2 : 1 )) \
-            background.color=0x88cc5500 \
+            background.color="$background" \
             background.corner_radius=5 \
-            background.drawing=off \
-            icon.drawing=off \
-            icon.padding_left=0 \
+            background.height=20 \
+            label.font.family="Hack Nerd Font" \
+            label.font.size=8 \
+            label.color=0xccf0f0f0 \
+            icon.padding_left=4 \
             icon.padding_right=0 \
+            icon="$icon" \
             label="$label" \
-            label.padding_left=8 \
-            label.padding_right=8 \
+            label.y_offset=-6 \
+            label.padding_left=4 \
+            label.padding_right=4 \
             click_script="aerospace workspace $sid" \
             script="$CONFIG_DIR/plugins/aerospace.sh $sid"
     fi
@@ -81,8 +94,8 @@ if [ -n "$1" ]; then
     
     # Set background based on visibility
     if [ "$is_visible" = true ]; then
-        sketchybar --set $NAME background.drawing=on
+        sketchybar --set $NAME background.color=0x88cc5500
     else
-        sketchybar --set $NAME background.drawing=off
+        sketchybar --set $NAME background.color=0x22f0f0f0
     fi
 fi

@@ -75,58 +75,61 @@ outer.top = [{ monitor."LC34G55T" = 13 }, 3]
 outer.right = 5
 
 [[on-window-detected]]
+if.app-id = "com.apple.mail"
+run = ['move-node-to-workspace 1󱉲']
+
+[[on-window-detected]]
+if.app-id = "com.apple.Notes"
+run = ['move-node-to-workspace 1󱉲']
+
+[[on-window-detected]]
+if.app-id = "com.apple.MobileSMS"
+run = ['move-node-to-workspace 1󱉲']
+
+[[on-window-detected]]
+if.app-id = "com.apple.iCal"
+run = ['move-node-to-workspace 1󱉲']
+
+[[on-window-detected]]
 if.app-id = "com.apple.Safari"
-run = ['move-node-to-workspace 6']
+run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
 if.app-id = "com.google.Chrome"
-run = ['move-node-to-workspace 6']
+run = ['move-node-to-workspace 2']
 
 [[on-window-detected]]
-if.app-id = "com.apple.mail"
-run = ['move-node-to-workspace 5󱉲']
+if.app-id = "com.apple.iphonesimulator"
+run = ['move-node-to-workspace 3󱃖']
+
+[[on-window-detected]]
+if.app-id = "com.microsoft.VSCode"
+run = ['move-node-to-workspace 3󱃖']
 
 [[on-window-detected]]
 if.app-id = "com.microsoft.VSCode"
 if.window-title-regex-substring = ".*Pulse Report$"
-run = ['move-node-to-workspace 100']
+run = ['move-node-to-workspace 4']
 
 [[on-window-detected]]
 if.app-id = "com.microsoft.VSCode"
 if.window-title-regex-substring = ".*Architary$"
-run = ['move-node-to-workspace 101']
-
-[[on-window-detected]]
-if.app-id = "com.microsoft.VSCode"
-if.window-title-regex-substring = ".*BGA$"
-run = ['move-node-to-workspace 103󰘸']
-
-
-[[on-window-detected]]
-if.app-id = "com.microsoft.VSCode"
-if.window-title-regex-substring = ".*Lavish Rides$"
-run = ['move-node-to-workspace 104󱥴']
+run = ['move-node-to-workspace 5']
 
 [[on-window-detected]]
 if.app-id = "com.microsoft.VSCode"
 if.window-title-regex-substring = ".*CRC$"
-run = ['move-node-to-workspace 102󰳶']
+run = ['move-node-to-workspace 6󰳶']
 
 [[on-window-detected]]
 if.app-id = "com.microsoft.VSCode"
-run = ['move-node-to-workspace 7󱃖']
+if.window-title-regex-substring = ".*BGA$"
+run = ['move-node-to-workspace 7󰘸']
 
 [[on-window-detected]]
-if.app-id = "com.apple.Notes"
-run = ['move-node-to-workspace 5󱉲']
-
-[[on-window-detected]]
-if.app-id = "com.apple.MobileSMS"
-run = ['move-node-to-workspace 5󱉲']
-
-[[on-window-detected]]
-if.app-id = "com.apple.iCal"
-run = ['move-node-to-workspace 5󱉲']
+if.app-id = "com.microsoft.VSCode"
+if.window-title-regex-substring = ".*Lavish Rides$"
+run = ['move-node-to-workspace 8󱥴']
 
 [[on-window-detected]]
 if.app-id = "com.apple.systempreferences"
@@ -139,14 +142,6 @@ run = ['layout floating']
 [[on-window-detected]]
 if.window-title-regex-substring = "AutoRaise Preferences"
 run = ['layout floating']
-
-[[on-window-detected]]
-if.app-id = "org.videolan.vlc"
-run = ['move-node-to-workspace 7󱃖']
-
-[[on-window-detected]]
-if.app-id = "com.apple.iphonesimulator"
-run = ['move-node-to-workspace 7󱃖']
 
 [[on-window-detected]]
 if.app-id = "com.apple.TV"
@@ -175,7 +170,7 @@ run = ['layout floating']
 
 [[on-window-detected]]
 if.app-id = "com.github.wez.wezterm"
-run = ['move-node-to-workspace 99']
+run = ['move-node-to-workspace 9']
 
 [[on-window-detected]]
 run = ['move-node-to-workspace 0']
@@ -238,28 +233,29 @@ alt-equal = 'resize smart +50'
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace
 alt-0 = 'workspace 0'
-alt-1 = 'workspace 100' # Pulse Report VS Code
-alt-2 = 'workspace 101' # Architary VS Code
-alt-3 = 'workspace 102󰳶' # CRC VS Code
-alt-4 = 'workspace 103󰘸' # BGA Innovation VS Code
-alt-8 = 'workspace 104󱥴' # Lavish Rides VS Code
-alt-5 = 'workspace 5󱉲'
-alt-6 = 'workspace 6'
-alt-7 = 'workspace 7󱃖'
-alt-z = 'workspace 99'  # WezTerm
+alt-1 = 'workspace 1󱉲'
+alt-2 = 'workspace 2'
+alt-3 = 'workspace 3󱃖'
+alt-4 = 'workspace 4' # Pulse Report VS Code
+alt-5 = 'workspace 5' # Architary VS Code
+alt-6 = 'workspace 6󰳶' # CRC VS Code
+alt-7 = 'workspace 7󰘸' # BGA Innovation VS Code
+alt-8 = 'workspace 8󱥴' # Lavish Rides VS Code
+alt-9 = 'workspace 9' # WezTerm
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
 alt-shift-0 = 'move-node-to-workspace 0'
-alt-shift-1 = 'move-node-to-workspace 100'
-alt-shift-2 = 'move-node-to-workspace 101'
-alt-shift-3 = 'move-node-to-workspace 102󰳶'
-alt-shift-4 = 'move-node-to-workspace 103󰘸'
-alt-shift-5 = 'move-node-to-workspace 5󱉲'
-alt-shift-6 = 'move-node-to-workspace 6'
-alt-shift-7 = 'move-node-to-workspace 7󱃖'
-alt-shift-8 = 'move-node-to-workspace 104󱥴'
-alt-shift-z = 'move-node-to-workspace 99'
+alt-shift-1 = 'move-node-to-workspace 1󱉲'
+alt-shift-2 = 'move-node-to-workspace 2'
+alt-shift-3 = 'move-node-to-workspace 3󱃖'
+alt-shift-4 = 'move-node-to-workspace 4'
+alt-shift-5 = 'move-node-to-workspace 5'
+alt-shift-6 = 'move-node-to-workspace 6󰳶'
+alt-shift-7 = 'move-node-to-workspace 7󰘸'
+alt-shift-8 = 'move-node-to-workspace 8󱥴'
+alt-shift-9 = 'move-node-to-workspace 9'
 
+alt-t = 'focus-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#workspace-back-and-forth
 alt-tab = 'workspace-back-and-forth'
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-workspace-to-monitor
@@ -270,15 +266,15 @@ alt-shift-semicolon = 'mode service'
 
 [workspace-to-monitor-force-assignment]
 '0' = 'Built-in Retina Display'
-'100' = ['LC34G55T', 'Built-in Retina Display']
-'101' = ['LC34G55T', 'Built-in Retina Display']
-'102󰳶' = ['LC34G55T', 'Built-in Retina Display']
-'103󰘸' = ['LC34G55T', 'Built-in Retina Display']
-'104󱥴' = ['LC34G55T', 'Built-in Retina Display']
-'5󱉲' = 'Built-in Retina Display'
-'6' = 'Built-in Retina Display'
-'7󱃖' = 'Built-in Retina Display'
-'99' = ['LC34G55T', 'Built-in Retina Display']
+'1󱉲' = 'Built-in Retina Display'
+'2' = 'Built-in Retina Display'
+'3󱃖' = 'Built-in Retina Display'
+'4' = ['LC34G55T', 'Built-in Retina Display']
+'5' = ['LC34G55T', 'Built-in Retina Display']
+'6󰳶' = ['LC34G55T', 'Built-in Retina Display']
+'7󰘸' = ['LC34G55T', 'Built-in Retina Display']
+'8󱥴' = ['LC34G55T', 'Built-in Retina Display']
+'9' = ['LC34G55T', 'Built-in Retina Display']
 
 # 'service' binding mode declaration.
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
