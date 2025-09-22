@@ -117,7 +117,7 @@ for monitor in $(aerospace list-monitors | awk '{print $1}'); do
         $(
           if [ "$MONITOR_COUNT" -eq 2 ]; then
             # Swap displays only when exactly 2 monitors are connected
-            echo display=$(( monitor == 1 ? 1 : 0 ))
+            echo display=$(( monitor == 1 ? 2 : 1 ))
           fi
         ) \
         background.color="$background" \

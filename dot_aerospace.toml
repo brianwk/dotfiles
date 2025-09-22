@@ -71,7 +71,7 @@ inner.horizontal = 10
 inner.vertical = 10
 outer.left = 5
 outer.bottom = 5
-outer.top = [{ monitor."LC34G55T" = 13 }, 3]
+outer.top = [{ monitor."LC34G55T" = 35 }, 3]
 outer.right = 5
 
 [[on-window-detected]]
