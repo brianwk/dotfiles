@@ -79,6 +79,14 @@ if.app-id = "com.apple.mail"
 run = ['move-node-to-workspace 1󱉲']
 
 [[on-window-detected]]
+if.app-id = "com.apple.Password.*"
+run = ['layout floating']
+
+[[on-window-detected]]
+if.app-name-regex-substring = 'coreautha'
+run = ['layout floating']
+
+[[on-window-detected]]
 if.app-id = "com.apple.Notes"
 run = ['layout floating']
 
