@@ -5,7 +5,6 @@ after-startup-command = [
     'exec-and-forget /Users/briankaplan/.aerospace.init.sh',                                            #',
     'exec-and-forget sketchybar',
     'exec-and-forget sketchybar --reload',
-    'exec-and-forget borders active_color=0xcccc5500 inactive_color=0x66f0f0f0 width=8.0 style=square',
 ]
 
 # Notify Sketchybar about workspace change
@@ -116,6 +115,11 @@ run = ['move-node-to-workspace 3󱃖']
 
 [[on-window-detected]]
 if.app-id = "com.microsoft.VSCode"
+check-further-callbacks = true
+run = ['move-node-to-workspace 3󱃖']
+
+[[on-window-detected]]
+if.app-id = "com.microsoft.VSCode"
 if.window-title-regex-substring = ".*Pulse Report$"
 run = ['move-node-to-workspace 4']
 
@@ -136,12 +140,8 @@ run = ['move-node-to-workspace 7󰘸']
 
 [[on-window-detected]]
 if.app-id = "com.microsoft.VSCode"
-if.window-title-regex-substring = ".*Lavish Rides$"
+if.window-title-regex-substring = ".*Lavish Rides.*"
 run = ['move-node-to-workspace 8󱥴']
-
-[[on-window-detected]]
-if.app-id = "com.microsoft.VSCode"
-run = ['move-node-to-workspace 3󱃖']
 
 [[on-window-detected]]
 if.app-id = "com.apple.systempreferences"
@@ -219,10 +219,12 @@ run = ['move-node-to-workspace 0']
 #     activate
 # end tell'
 # '''
+alt-a = 'workspace prev --wrap-around'
+alt-s = 'workspace next --wrap-around'
 ctrl-left = 'workspace prev --wrap-around'
 ctrl-right = 'workspace next --wrap-around'
 ctrl-t = ['balance-sizes']
-ctrl-y = ['focus-monitor --wrap-around next', 'move-mouse monitor-lazy-center']
+alt-z = ['focus-monitor --wrap-around next', 'move-mouse monitor-lazy-center']
 # See: https://nikitabobko.github.io/AeroSpace/commands#layout
 alt-slash = 'layout tiles horizontal vertical'
 alt-comma = 'layout accordion horizontal vertical'
