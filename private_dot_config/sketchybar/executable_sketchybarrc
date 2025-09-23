@@ -77,7 +77,7 @@ sketchybar --default "${default[@]}"
 # https://felixkratz.github.io/SketchyBar/config/events
 
 sketchybar --add item clock right \
-           --set clock update_freq=10 icon= background.height=20 background.corner_radius=5 background.padding_left=4 padding_right=1 padding_left=1 icon.background.color=0x66f0f0f0 icon.background.corner_radius=5 icon.background.height=20 background.color=0x22f0f0f0 script="$PLUGIN_DIR/clock.sh" \
+           --set clock update_freq=10 click_script="open -a 'Calendar'" icon= background.height=20 background.corner_radius=5 background.padding_left=4 padding_right=1 padding_left=1 icon.background.color=0x66f0f0f0 icon.background.corner_radius=5 icon.background.height=20 background.color=0x22f0f0f0 script="$PLUGIN_DIR/clock.sh" \
            --add item volume right \
            --set volume icon.background.corner_radius=5 icon.background.height=20 icon.background.color=0x66f0f0f0 padding_right=1 padding_left=1 background.height=20 background.corner_radius=5 background.color=0x22f0f0f0 script="$PLUGIN_DIR/volume.sh" \
            --subscribe volume volume_change \
