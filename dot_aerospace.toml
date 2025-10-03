@@ -11,8 +11,10 @@ after-startup-command = [
 exec-on-workspace-change = [
     '/bin/bash',
     '-c',
-    'sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE',
+    '~/.aerospace.move.sh' # && sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$AEROSPACE_FOCUSED_WORKSPACE"',
 ]
+#on-window-unhide = ['exec-and-forget borders width=8.0']
+#on-window-hide = ['exec-and-forget borders width=0.0 --window-id $AEROSPACE_FOCUSED_WINDOW_ID']
 # Place a copy of this config to ~/.aerospace.toml
 # After that, you can edit ~/.aerospace.toml to your liking
 
@@ -74,6 +76,18 @@ outer.top = [{ monitor."LC34G55T" = 35 }, 3]
 outer.right = 5
 
 [[on-window-detected]]
+if.window-title-regex-substring = "picture-in-picture"
+run = 'layout floating'
+
+[[on-window-detected]]
+if.window-title-regex-substring = "Picture in Picture"
+run = 'layout floating'
+
+[[on-window-detected]]
+if.app-id = "com.apple.AccessibilityInspector"
+run = 'layout floating'
+
+[[on-window-detected]]
 if.app-id = "com.apple.mail"
 run = ['move-node-to-workspace 1󱉲']
 
@@ -115,11 +129,6 @@ run = ['move-node-to-workspace 3󱃖']
 
 [[on-window-detected]]
 if.app-id = "com.microsoft.VSCode"
-check-further-callbacks = true
-run = ['move-node-to-workspace 3󱃖']
-
-[[on-window-detected]]
-if.app-id = "com.microsoft.VSCode"
 if.window-title-regex-substring = ".*Pulse Report$"
 run = ['move-node-to-workspace 4']
 
@@ -144,8 +153,8 @@ if.window-title-regex-substring = ".*Lavish Rides.*"
 run = ['move-node-to-workspace 8󱥴']
 
 [[on-window-detected]]
-if.app-id = "com.apple.systempreferences"
-run = ['layout floating']
+if.app-id = "com.microsoft.VSCode"
+run = ['move-node-to-workspace 3󱃖']
 
 [[on-window-detected]]
 if.app-id = "com.sbmpost.AutoRaise"
@@ -219,6 +228,7 @@ run = ['move-node-to-workspace 0']
 #     activate
 # end tell'
 # '''
+alt-q = 'fullscreen'
 alt-a = 'workspace prev --wrap-around'
 alt-s = 'workspace next --wrap-around'
 ctrl-left = 'workspace prev --wrap-around'

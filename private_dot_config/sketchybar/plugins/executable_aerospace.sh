@@ -29,7 +29,7 @@ add_workspace_if_missing() {
         sketchybar --add item space.$sid left \
             --subscribe space.$sid aerospace_workspace_change display_change system_woke \
             --set space.$sid \
-            display=$(( monitor == 1 ? 2 : 1 )) \
+            display=$monitor \
             background.color="$background" \
             background.corner_radius=5 \
             background.height=20 \
