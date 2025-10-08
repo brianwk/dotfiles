@@ -110,4 +110,4 @@ function git_develop_branch() {
   return 1
 }
 eval "$(starship init zsh)"
-
+source ~/.motd.sh
