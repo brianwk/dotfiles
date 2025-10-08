@@ -158,6 +158,7 @@ run = ['move-node-to-workspace 8󱥴']
 
 [[on-window-detected]]
 if.app-id = "com.microsoft.VSCode"
+if.window-title-regex-substring = ".*DEFAULT$"
 run = ['move-node-to-workspace 3󱃖']
 
 [[on-window-detected]]
