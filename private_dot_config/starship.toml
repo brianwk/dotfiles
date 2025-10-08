@@ -9,7 +9,9 @@ $directory\
 [](bg:yellow fg:peach)\
 $git_branch\
 $git_status\
-[](fg:yellow bg:green)\
+[](bg:blue fg:yellow)\
+$aws\
+[](fg:blue bg:green)\
 $c\
 $rust\
 $golang\
@@ -28,7 +30,7 @@ $cmd_duration\
 $line_break\
 $character"""
 
-palette = 'catppuccin_mocha'
+palette = 'catppuccin_frappe'
 
 [os]
 disabled = false
@@ -55,6 +57,9 @@ Debian = "󰣚"
 Redhat = "󱄛"
 RedHatEnterprise = "󱄛"
 
+[status]
+map_symbol = true
+
 [username]
 show_always = true
 style_user = "bg:red fg:crust"
@@ -74,12 +79,28 @@ truncation_symbol = "…/"
 "Pictures" = " "
 "Developer" = "󰲋 "
 
+[aws]
+format = '[ $symbol($profile )(\($region\) )](fg:crust bg:blue)($style)'
+style = 'bg:blue'
+symbol = ' '
+
 [git_branch]
 symbol = ""
 style = "bg:yellow"
 format = '[[ $symbol $branch ](fg:crust bg:yellow)]($style)'
 
 [git_status]
+conflicted = '🏳'
+ahead = '🏎💨'
+behind = '😰'
+diverged = '😵'
+up_to_date = '✓'
+untracked = '🤷'
+stashed = '📦'
+modified = '📝'
+staged = '[++\($count\)](green)'
+renamed = '👅'
+deleted = '🗑'
 style = "bg:yellow"
 format = '[[($all_status$ahead_behind )](fg:crust bg:yellow)]($style)'
 
