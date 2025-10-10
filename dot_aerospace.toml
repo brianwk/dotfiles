@@ -76,6 +76,10 @@ outer.top = [{ monitor."LC34G55T" = 35 }, 3]
 outer.right = 5
 
 [[on-window-detected]]
+if.app-id = "org.hammerspoon.Hammerspoon"
+run = 'layout floating'
+
+[[on-window-detected]]
 if.window-title-regex-substring = "picture-in-picture"
 run = 'layout floating'
 
@@ -158,7 +162,7 @@ run = ['move-node-to-workspace 8󱥴']
 
 [[on-window-detected]]
 if.app-id = "com.microsoft.VSCode"
-if.window-title-regex-substring = ".*DEFAULT$"
+if.window-title-regex-substring = "^Default$"
 run = ['move-node-to-workspace 3󱃖']
 
 [[on-window-detected]]
@@ -198,8 +202,8 @@ run = ['layout floating']
 if.app-id = "com.github.wez.wezterm"
 run = ['move-node-to-workspace 9']
 
-[[on-window-detected]]
-run = ['move-node-to-workspace 0']
+#[[on-window-detected]]
+#run = ['move-node-to-workspace 0']
 
 # 'main' binding mode declaration
 # See: https://nikitabobko.github.io/AeroSpace/guide#binding-modes
