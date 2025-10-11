@@ -12,7 +12,7 @@ function screenLayoutChangedCallback()
 end
 
 -- Create a screen watcher object
-local screenWatcher = hs.screen.watcher.new(screenLayoutChangedCallback)
+local screenWatcher = hs.screen.watcher.newWithActiveScreen(screenLayoutChangedCallback)
 
 -- Start the screen watcher
 screenWatcher:start()
