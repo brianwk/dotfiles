@@ -1,2 +1,2 @@
-figlet -f banner3 -k -W -w 100 -c "Software Deployed" | lolcat -t -S 19880623
-uptime | lolcat -t -S 9999
+figlet -f ~/.config/phm-vga.flf -k -W -w 100 -c "Software Deployed" | lolcat -t -S 19880623
+echo "\n\t\t$(uptime)"  | lolcat -t -S 9999

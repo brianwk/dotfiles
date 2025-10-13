@@ -1,6 +1,12 @@
+local reloadTimer
+
+function reloadSketchyBar()
+    hs.execute("/opt/homebrew/bin/sketchybar --reload", true)
+end
+
 function runOnUnlock(eventType)
     if (eventType == hs.caffeinate.watcher.screensDidUnlock) then
-        hs.execute("sleep 3 && /opt/homebrew/bin/sketchybar --reload", true) 
+        hs.timer.delayed.new(30, reloadSketchyBar)
     end
 end
 
@@ -8,14 +14,19 @@ local lockWatcher = hs.caffeinate.watcher.new(runOnUnlock)
 lockWatcher:start()
 
 function screenLayoutChangedCallback()
-    hs.execute("sleep 3 && /opt/homebrew/bin/sketchybar --reload", true)
+    if reloadTimer and reloadTimer:running() then
+        return
+    end
+    reloadTimer = hs.timer.delayed.new(30, reloadSketchyBar)
 end
 
 -- Create a screen watcher object
-local screenWatcher = hs.screen.watcher.newWithActiveScreen(screenLayoutChangedCallback)
-
+local activeScreenWatcher = hs.screen.watcher.newWithActiveScreen(screenLayoutChangedCallback)
+local screenWatcher = hs.screen.watcher.new(screenLayoutChangedCallback)
 -- Start the screen watcher
+activeScreenWatcher:start()
 screenWatcher:start()
+
 
 local wf = hs.window.filter
 local codeFilter = wf.new('Code')
