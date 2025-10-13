@@ -15,9 +15,11 @@ lockWatcher:start()
 
 function screenLayoutChangedCallback()
     if reloadTimer and reloadTimer:running() then
-        return
+        print("Stopping previous timer")
+	reloadTimer:stop()
     end
-    reloadTimer = hs.timer.delayed.new(30, reloadSketchyBar)
+    print("Reloading SketchyBar in 3s")
+    reloadTimer = hs.timer.doAfter(3, reloadSketchyBar)
 end
 
 -- Create a screen watcher object
