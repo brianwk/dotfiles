@@ -57,7 +57,7 @@ hs.hotkey.bind({"alt"}, "c", reloadSketchyBar)
 
 function runOnUnlock(eventType)
     if (eventType == hs.caffeinate.watcher.screensDidUnlock) then
-        hs.timer.doAfter(30, reloadSketchyBar)
+        reloadTimer = hs.timer.doAfter(10, reloadSketchyBar)
     end
 end
 
@@ -69,8 +69,8 @@ function screenLayoutChangedCallback()
         print("Stopping previous timer")
 	reloadTimer:stop()
     end
-    print("Reloading SketchyBar in 3s")
-    reloadTimer = hs.timer.doAfter(3, reloadSketchyBar)
+    print("Reloading SketchyBar in 1s")
+    reloadTimer = hs.timer.doAfter(1, reloadSketchyBar)
 end
 
 -- Create a screen watcher object
