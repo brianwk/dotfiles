@@ -11,6 +11,12 @@ function getSketchyBarSpaces()
     for space in string.gmatch(result, "space%.%S+") do
         table.insert(spaces, space)
     end
+    -- How to sort by var space
+    table.sort(spaces, function(a, b)
+        local numA = tonumber(a:match("space%.(%d+)"))
+        local numB = tonumber(b:match("space%.(%d+)"))
+        return numA < numB
+    end)
     return spaces
 end
 
@@ -41,19 +47,20 @@ function reloadSketchyBar()
         local display = getSketchyBarSpaceDisplay(space)
         print("Space: " .. space .. " is on display: " .. display)
         local displayNumber = tonumber(display)
-        if numberOfDisplays == 1 or i <= 4 then
+        if numberOfDisplays == 1 then
             print("Moving " .. space .. " from display " .. displayNumber .. " to display 1")
             hs.execute(SKETCHYBAR_PATH .. " --set " .. space .. " display=1", true)
-        elseif numberOfDisplays > 1 and displayNumber == 1 and i > 4 then
+        elseif numberOfDisplays > 1 and i <= 4 then
             print("Moving " .. space .. " from display " .. displayNumber .. " to display 2")
             hs.execute(SKETCHYBAR_PATH .. " --set " .. space .. " display=2", true)
+        elseif numberOfDisplays > 1 and displayNumber == 1 and i > 4 then
+            print("Moving " .. space .. " from display " .. displayNumber .. " to display 1")
+            hs.execute(SKETCHYBAR_PATH .. " --set " .. space .. " display=1", true)
         else
             print(space .. " is on display " .. tostring(displayNumber) .. " which is valid")
         end
     end
 end
-
-hs.hotkey.bind({"alt"}, "c", reloadSketchyBar)
 
 function runOnUnlock(eventType)
     if (eventType == hs.caffeinate.watcher.screensDidUnlock) then
