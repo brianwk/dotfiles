@@ -50,10 +50,10 @@ function reloadSketchyBar()
         if numberOfDisplays == 1 then
             print("Moving " .. space .. " from display " .. displayNumber .. " to display 1")
             hs.execute(SKETCHYBAR_PATH .. " --set " .. space .. " display=1", true)
-        elseif numberOfDisplays > 1 and i <= 4 then
+        elseif displayNumber == 1 and i <= 4 then
             print("Moving " .. space .. " from display " .. displayNumber .. " to display 2")
             hs.execute(SKETCHYBAR_PATH .. " --set " .. space .. " display=2", true)
-        elseif numberOfDisplays > 1 and displayNumber == 1 and i > 4 then
+        elseif displayNumber == 2 and i > 4 then
             print("Moving " .. space .. " from display " .. displayNumber .. " to display 1")
             hs.execute(SKETCHYBAR_PATH .. " --set " .. space .. " display=1", true)
         else
@@ -64,7 +64,7 @@ end
 
 function runOnUnlock(eventType)
     if (eventType == hs.caffeinate.watcher.screensDidUnlock) then
-        reloadTimer = hs.timer.doAfter(10, reloadSketchyBar)
+        reloadTimer = hs.timer.doAfter(30, reloadSketchyBar)
     end
 end
 
@@ -76,8 +76,8 @@ function screenLayoutChangedCallback()
         print("Stopping previous timer")
 	reloadTimer:stop()
     end
-    print("Reloading SketchyBar in 1s")
-    reloadTimer = hs.timer.doAfter(1, reloadSketchyBar)
+    print("Reloading SketchyBar in 5s")
+    reloadTimer = hs.timer.doAfter(5, reloadSketchyBar)
 end
 
 -- Create a screen watcher object
