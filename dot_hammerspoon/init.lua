@@ -60,10 +60,12 @@ function reloadSketchyBar()
             print(space .. " is on display " .. tostring(displayNumber) .. " which is valid")
         end
     end
+    hs.execute(SKETCHYBAR_PATH .. " --reorder " .. table.concat(spaces, " "), true)
 end
 
 function runOnUnlock(eventType)
     if (eventType == hs.caffeinate.watcher.screensDidUnlock) then
+        print("Screen unlocked, reloading SketchyBar in 30s")
         reloadTimer = hs.timer.doAfter(30, reloadSketchyBar)
     end
 end
