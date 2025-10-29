@@ -34,6 +34,7 @@ palette = 'catppuccin_frappe'
 [os]
 disabled = false
 style = "bg:red fg:crust"
+format = "[$symbol ]($style)"
 
 [os.symbols]
 Windows = ""
