@@ -64,13 +64,14 @@ function reloadSketchyBar()
 end
 
 function runOnUnlock(eventType)
+    print("Caffeinate event: " .. tostring(eventType))
     if (eventType == hs.caffeinate.watcher.screensDidUnlock) then
-        print("Screen unlocked, reloading SketchyBar in 30s")
-        reloadTimer = hs.timer.doAfter(30, reloadSketchyBar)
+        print("Screen unlocked, reloading SketchyBar in 5s")
+        reloadTimer = hs.timer.doAfter(5, reloadSketchyBar)
     end
 end
 
-local lockWatcher = hs.caffeinate.watcher.new(runOnUnlock)
+lockWatcher = hs.caffeinate.watcher.new(runOnUnlock)
 lockWatcher:start()
 
 function screenLayoutChangedCallback()
@@ -83,15 +84,12 @@ function screenLayoutChangedCallback()
 end
 
 -- Create a screen watcher object
-local activeScreenWatcher = hs.screen.watcher.newWithActiveScreen(screenLayoutChangedCallback)
-local screenWatcher = hs.screen.watcher.new(screenLayoutChangedCallback)
+screenWatcher = hs.screen.watcher.newWithActiveScreen(screenLayoutChangedCallback)
 -- Start the screen watcher
-activeScreenWatcher:start()
 screenWatcher:start()
 
 
-local wf = hs.window.filter
-local codeFilter = wf.new('Code')
+codeFilter = hs.window.filter.new{'Code - Insiders', 'Code'}
 
 local workspaceMap = {
     ["DEFAULT"] = "3󱃖",
@@ -126,4 +124,4 @@ end
 
 -- Subscribe the filter to the 'titleChanged' event.
 -- The filter will now begin monitoring for this event.
-codeFilter:subscribe(wf.windowTitleChanged, titleChangedCallback)
+codeFilter:subscribe(hs.window.filter.windowTitleChanged, titleChangedCallback)
