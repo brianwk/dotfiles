@@ -1,3 +1,12 @@
+-- This is a HammerSpoon configuration that enhances my AeroSpace and SketchyBar integration:
+-- 1. Watches for screen unlock events and screen layout changes.
+-- 2. On such events, it reloads SketchyBar configuration to ensure spaces are
+--    correctly assigned to displays based on the number of active screens.
+--    It also reorders Visual Studio Code windows to specific workspaces based on their profile.
+-- 3. Monitors Visual Studio Code windows and moves them to specific workspaces
+--    based on the project name in the window title.
+-- I made this script to bandaid issues with multi-monitor setups with AeroSpace and SketchyBar.
+
 local reloadTimer
 
 local SKETCHYBAR_PATH = "/opt/homebrew/bin/sketchybar"
