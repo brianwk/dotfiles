@@ -61,6 +61,8 @@ function reloadSketchyBar()
         end
     end
     hs.execute(SKETCHYBAR_PATH .. " --reorder " .. table.concat(spaces, " "), true)
+
+    reorderCodeWindows()
 end
 
 function runOnUnlock(eventType)
@@ -100,8 +102,16 @@ local workspaceMap = {
     ["Lavish Rides"] = "8󱥴"
 }
 
+function reorderCodeWindows()
+    local codeWindows = codeFilter:getWindows()
+    for _, window in ipairs(codeWindows) do
+        -- run the callback titleChangedCallback logic once to ensure correct workspace
+        titleChangedCallback(window, nil, nil)
+    end
+end
+
 -- Define the callback function to run when a title changes.
-local function titleChangedCallback(window, appName, event)
+function titleChangedCallback(window, appName, event)
     local newTitle = window:title()
     local sep = "—"
     -- Split the title by sep and then get the last part
@@ -118,7 +128,7 @@ local function titleChangedCallback(window, appName, event)
     end
     if projectName and workspaceMap[projectName] then
         local newWorkspace = workspaceMap[projectName]
-        hs.execute("aerospace move-node-to-workspace --window-id " .. window:id() .. " " .. newWorkspace, true)
+        os.execute("aerospace move-node-to-workspace --window-id " .. window:id() .. " " .. newWorkspace .. " &")
     end
 end
 
