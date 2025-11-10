@@ -108,7 +108,7 @@ local workspaceMap = {
     ["Architary"] = "5",
     ["CRC"] = "6󰳶",
     ["BGA"] = "7󰘸",
-    ["Software Deployed"] = "8"
+    ["Lavish Rides"] = "8󱥴"
 }
 
 function reorderCodeWindows()
@@ -138,9 +138,7 @@ function titleChangedCallback(window, appName, event)
     if projectName and workspaceMap[projectName] then
         local newWorkspace = workspaceMap[projectName]
         os.execute("aerospace move-node-to-workspace --window-id " .. window:id() .. " " .. newWorkspace .. " &")
-      else 
-        os.execute("aerospace move-node-to-workspace --window-id " .. window::id() .. " " .. "8 &")
-      end
+    end
 end
 
 -- Subscribe the filter to the 'titleChanged' event.
