@@ -156,8 +156,8 @@ if.window-title-regex-substring = ".*BGA$"
 run = ['move-node-to-workspace 7󰘸']
 
 [[on-window-detected]]
-if.app-id = "com.microsoft.VSCode"
-if.window-title-regex-substring = ".*Lavish Rides.*"
+if.app-id = "com.microsoft.VSCodeInsiders"
+#if.window-title-regex-substring = ".*Lavish Rides.*"
 run = ['move-node-to-workspace 8󱥴']
 
 [[on-window-detected]]
