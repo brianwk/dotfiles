@@ -302,7 +302,7 @@ app_rules = [
   { app_id = "com.apple.mail", workspace = 1 },
   { app_id = "com.apple.MobileSMS", workspace = 1 }, 
   { app_id = "com.apple.iCal", workspace = 1 }, 
-  { app_id = "app.zen-browser.zen", workspace = 2 }, 
+  { app_id = "app.zen-browser.zen", workspace = 8 }, 
   { app_id = "com.apple.Safari", workspace = 2 }, 
   { app_id = "com.google.Chrome", workspace = 2 }, 
   { app_id = "com.apple.iphonesimulator", workspace = 3 }, 
@@ -348,8 +348,8 @@ comb1 = "Alt + Shift"
 
 "Alt + Z" = "toggle_space_activated"
 
-"Alt + A" = "prev_workspace"
-"Alt + S" = "next_workspace"
+"Alt + A" = { prev_workspace = true }
+"Alt + S" = { next_workspace = true }
 
 "Alt + H" = { move_focus = "left" }
 "Alt + J" = { move_focus = "down" }
