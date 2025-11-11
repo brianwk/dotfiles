@@ -79,7 +79,8 @@ function runOnUnlock(eventType)
     print("Caffeinate event: " .. tostring(eventType))
     if (eventType == hs.caffeinate.watcher.screensDidUnlock) then
         -- print("Screen unlocked, reloading SketchyBar in 5s")
-        reloadTimer = hs.timer.doAfter(5, reorderCodeWindows)
+        reorderCodeWindows()
+        -- reloadTimer = hs.timer.doAfter(5, reorderCodeWindows)
     end
 end
 
@@ -87,12 +88,13 @@ lockWatcher = hs.caffeinate.watcher.new(runOnUnlock)
 lockWatcher:start()
 
 function screenLayoutChangedCallback()
-    if reloadTimer and reloadTimer:running() then
-        print("Stopping previous timer")
-	reloadTimer:stop()
-    end
+    --if reloadTimer and reloadTimer:running() then
+    --    print("Stopping previous timer")
+	--reloadTimer:stop()
+    --end
     -- print("Reloading SketchyBar in 5s")
-    reloadTimer = hs.timer.doAfter(5, reorderCodeWindows)
+    --reloadTimer = hs.timer.doAfter(5, reorderCodeWindows)
+    reorderCodeWindows()
 end
 
 -- Create a screen watcher object
