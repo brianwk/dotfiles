@@ -108,7 +108,7 @@ local workspaceMap = {
     ["Architary"] = "5",
     ["CRC"] = "6󰳶",
     ["BGA"] = "7󰘸",
-    ["Lavish Rides"] = "8󱥴"
+    ["SD"] = "8"
 }
 
 function reorderCodeWindows()
@@ -137,8 +137,17 @@ function titleChangedCallback(window, appName, event)
     end
     if projectName and workspaceMap[projectName] then
         local newWorkspace = workspaceMap[projectName]
-        os.execute("aerospace move-node-to-workspace --window-id " .. window:id() .. " " .. newWorkspace .. " &")
+        wmMoveToWorkspace(window, newWorkspace)
+    else
+        wmMoveToWorkspace(window, "8")
     end
+end
+
+function wmMoveToWorkspace(window, workspace)
+    -- Get workspace with just leading digits
+    let workspaceIdx = workspace:match("^(%d+)")
+    os.execute("rift-cli execute workspace move-window " .. workspace .. " " .. window::id() .. " &")
+    -- os.execute("aerospace move-node-to-workspace --window-id " .. window:id() .. " " .. workspace .. " &")
 end
 
 -- Subscribe the filter to the 'titleChanged' event.

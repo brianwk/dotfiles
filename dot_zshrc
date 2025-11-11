@@ -111,4 +111,5 @@ function git_develop_branch() {
 }
 eval "$(starship init zsh)"
 source ~/.motd.sh
+. "$HOME/.cargo/env" 
 export PATH="/opt/homebrew/opt/mysql-client@8.4/bin:$PATH"

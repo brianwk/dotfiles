@@ -158,7 +158,7 @@ run = ['move-node-to-workspace 7󰘸']
 [[on-window-detected]]
 if.app-id = "com.microsoft.VSCodeInsiders"
 #if.window-title-regex-substring = ".*Lavish Rides.*"
-run = ['move-node-to-workspace 8󱥴']
+run = ['move-node-to-workspace 8']
 
 [[on-window-detected]]
 if.app-id = "com.microsoft.VSCode"
@@ -273,7 +273,7 @@ alt-4 = 'workspace 4' # Pulse Report VS Code
 alt-5 = 'workspace 5' # Architary VS Code
 alt-6 = 'workspace 6󰳶' # CRC VS Code
 alt-7 = 'workspace 7󰘸' # BGA Innovation VS Code
-alt-8 = 'workspace 8󱥴' # Lavish Rides VS Code
+alt-8 = 'workspace 8' #  VS Code (Personal)
 alt-9 = 'workspace 9' # WezTerm
 
 # See: https://nikitabobko.github.io/AeroSpace/commands#move-node-to-workspace
@@ -285,7 +285,7 @@ alt-shift-4 = 'move-node-to-workspace 4'
 alt-shift-5 = 'move-node-to-workspace 5'
 alt-shift-6 = 'move-node-to-workspace 6󰳶'
 alt-shift-7 = 'move-node-to-workspace 7󰘸'
-alt-shift-8 = 'move-node-to-workspace 8󱥴'
+alt-shift-8 = 'move-node-to-workspace 8'
 alt-shift-9 = 'move-node-to-workspace 9'
 
 alt-t = 'focus-back-and-forth'
@@ -306,7 +306,7 @@ alt-shift-semicolon = 'mode service'
 '5' = ['LC34G55T', 'Built-in Retina Display']
 '6󰳶' = ['LC34G55T', 'Built-in Retina Display']
 '7󰘸' = ['LC34G55T', 'Built-in Retina Display']
-'8󱥴' = ['LC34G55T', 'Built-in Retina Display']
+'8' = ['LC34G55T', 'Built-in Retina Display']
 '9' = ['LC34G55T', 'Built-in Retina Display']
 
 # 'service' binding mode declaration.
