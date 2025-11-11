@@ -10,6 +10,7 @@
 local reloadTimer
 
 local SKETCHYBAR_PATH = "/opt/homebrew/bin/sketchybar"
+local WORK_DISPLAY_UUID = "35D8FFE8-6A4B-45DF-BB20-14D3D229A5B8"
 
 function getSketchyBarSpaces()
     -- sketchybar --query bar | jq '.items' | grep 'space.' | awk -F'"' '{print $4}'
@@ -101,6 +102,7 @@ screenWatcher:start()
 
 
 codeFilter = hs.window.filter.new{'Code - Insiders', 'Code'}
+wezTermFilter = hs.window.filter.new{'WezTerm'}
 
 local workspaceMap = {
     ["DEFAULT"] = "3󱃖",
@@ -116,6 +118,13 @@ function reorderCodeWindows()
     for _, window in ipairs(codeWindows) do
         -- run the callback titleChangedCallback logic once to ensure correct workspace
         titleChangedCallback(window, nil, nil)
+    end
+end
+
+function windowCreatedCallback(window, appName, event)
+    local targetScreen = hs.screen.find(WORK_DISPLAY_UUID)
+    if targetScreen then
+        window:moveToScreen(targetScreen, false, false, 0)
     end
 end
 
@@ -135,6 +144,7 @@ function titleChangedCallback(window, appName, event)
     else
         projectName = newTitle:gsub("^%s*(.-)%s*$", "%1") -- Trim whitespace
     end
+    windowCreatedCallback(window, appName, event)
     if projectName and workspaceMap[projectName] then
         local newWorkspace = workspaceMap[projectName]
         wmMoveToWorkspace(window, newWorkspace)
@@ -182,4 +192,6 @@ end
 
 -- Subscribe the filter to the 'titleChanged' event.
 -- The filter will now begin monitoring for this event.
+codeFilter:subscribe(hs.window.filter.windowCreated, windowCreatedCallback)
 codeFilter:subscribe(hs.window.filter.windowTitleChanged, titleChangedCallback)
+wezTermFilter:subscribe(hs.window.filter.windowCreated, windowCreatedCallback)
