@@ -41,9 +41,9 @@ for monitor in $(rift-cli query displays | jq -r '.[] | .screen_id'); do
 done
 
 # Add a periodic workspace sync item
-sketchybar --add item workspace_sync center \
-           --set workspace_sync update_freq=5 \
-                 drawing=off \
-                 script="$PLUGIN_DIR/rift.sh"
+#sketchybar --add item workspace_sync center \
+#           --set workspace_sync update_freq=5 \
+#                 drawing=off \
+#                 script="$PLUGIN_DIR/rift.sh"
 
 sketchybar --trigger rift_workspace_changed FOCUSED_WORKSPACE=$(rift-cli query workspaces | jq '.[] | select(.is_active == true) | .index')
