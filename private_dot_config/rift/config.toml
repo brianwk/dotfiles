@@ -96,6 +96,9 @@ default_orientation = "perpendicular"
 #   (you may override only `outer`, only `inner`, or both for a display).
 #   Use the display's UUID as the key (for example, from system profiler or via rift CLI).
 
+#[settings.layout.gaps.per_display."".outer]
+#top = 35
+
 [settings.layout.gaps.outer]
 top = 5
 left = 5
@@ -286,6 +289,7 @@ app_rules = [
   { app_id = "com.apple.LinkedNotesUIService", floating = true },
   { app_id = "com.apple.LinkedNotesUIService", floating = true },
   { app_id = "com.apple.ScreenContinuity", floating = true },
+  { app_id = "com.google.Chrome", title_substring = "DevTools", ax_subrole = "AXDialog" },
   { app_id = "com.apple.mail", workspace = 1 },
   { app_id = "com.apple.MobileSMS", workspace = 1 }, 
   { app_id = "com.apple.iCal", workspace = 1 }, 
@@ -335,6 +339,9 @@ comb1 = "Alt + Shift"
 
 "Alt + Z" = "toggle_space_activated"
 
+"Alt + A" = "prev_workspace"
+"Alt + S" = "next_workspace"
+
 "Alt + H" = { move_focus = "left" }
 "Alt + J" = { move_focus = "down" }
 "Alt + K" = { move_focus = "up" }
@@ -378,8 +385,8 @@ comb1 = "Alt + Shift"
 "Alt + Ctrl + E" = "unjoin_windows"
 
 "Alt + Shift + Space" = "toggle_window_floating"
-"Alt + F" = "toggle_fullscreen"
-"Alt + Shift + F" = "toggle_fullscreen_within_gaps"
+"Alt + Q" = "toggle_fullscreen"
+"Alt + Shift + Q" = "toggle_fullscreen_within_gaps"
 "comb1 + Ctrl + Space" = "toggle_focus_floating" # briefly bring focus to floating window
 
 # smartly resize windows
