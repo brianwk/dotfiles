@@ -77,8 +77,8 @@ end
 function runOnUnlock(eventType)
     print("Caffeinate event: " .. tostring(eventType))
     if (eventType == hs.caffeinate.watcher.screensDidUnlock) then
-        print("Screen unlocked, reloading SketchyBar in 5s")
-        reloadTimer = hs.timer.doAfter(5, reloadSketchyBar)
+        -- print("Screen unlocked, reloading SketchyBar in 5s")
+        reloadTimer = hs.timer.doAfter(5, reorderCodeWindows)
     end
 end
 
@@ -90,8 +90,8 @@ function screenLayoutChangedCallback()
         print("Stopping previous timer")
 	reloadTimer:stop()
     end
-    print("Reloading SketchyBar in 5s")
-    reloadTimer = hs.timer.doAfter(5, reloadSketchyBar)
+    -- print("Reloading SketchyBar in 5s")
+    reloadTimer = hs.timer.doAfter(5, reorderCodeWindows)
 end
 
 -- Create a screen watcher object
@@ -144,11 +144,41 @@ function titleChangedCallback(window, appName, event)
 end
 
 function wmMoveToWorkspace(window, workspace)
-    -- Get workspace with just leading digits
-    local workspaceIdx = workspace:match("^(%d+)")
-    os.execute("rift-cli execute workspace move-window " .. workspaceIdx .. " " .. window:id() .. " &")
-    -- os.execute("aerospace move-node-to-workspace --window-id " .. window:id() .. " " .. workspace .. " &")
+  local workspaceIdx = workspace:match("^(%d+)") or workspace
+  local cmd = string.format(
+    "rift-cli execute workspace move-window %s %s",
+    workspaceIdx,
+    window:id()
+  )
+
+  print("CMD:", cmd)
+  local ok, stdout, exitType, rc = hs.execute(cmd, true)
+  stdout = type(stdout) == "string" and stdout or ""
+  if ok then
+    print(string.format(
+      "Success: (%s / %s) -> %s",
+      exitType,
+      rc,
+      stdout:gsub("%s+$", "")
+    ))
+  else
+    print(string.format(
+      "Failure: (%s / %s) -> %s",
+      exitType,
+      rc,
+      stdout:gsub("%s+$", "")
+    ))
+  end
 end
+
+--function wmMoveToWorkspace(window, workspace)
+    -- Get workspace with just leading digits
+--    local workspaceIdx = workspace:match("^(%d+)")
+--    print("Moving window: " .. window:title() .. " to workspace: " .. workspace .. " (idx: " .. workspaceIdx .. ")")
+--    print("CMD: rift-cli execute workspace move-window " .. workspaceIdx .. " " .. window:id() .. " &")
+--    os.execute("rift-cli execute workspace move-window " .. workspaceIdx .. " " .. window:id() .. " &")
+    -- os.execute("aerospace move-node-to-workspace --window-id " .. window:id() .. " " .. workspace .. " &")
+--end
 
 -- Subscribe the filter to the 'titleChanged' event.
 -- The filter will now begin monitoring for this event.

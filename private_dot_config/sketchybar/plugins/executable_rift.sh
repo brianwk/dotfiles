@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+:/change
 
 # make sure it's executable with:
 # chmod +x ~/.config/sketchybar/plugins/aerospace.sh
@@ -22,7 +22,7 @@ add_workspace_if_missing() {
         fi
         echo "Adding new workspace $sid with label $label on monitor $monitor"
         sketchybar --add item space.$sid left \
-            --subscribe space.$sid rift_workspace_change display_change system_woke \
+            --subscribe space.$sid rift_workspace_changed display_change system_woke \
             --set space.$sid \
             background.color="$background" \
             background.corner_radius=5 \
@@ -66,24 +66,17 @@ remove_missing_workspaces
 for sid in $(rift-cli query workspaces | jq -r '.[] | .index' 2>/dev/null); do
     add_workspace_if_missing "$sid" "$monitor"
 done
-
 # If a specific workspace was passed as argument, handle its visibility
 if [ -n "$1" ]; then
     workspace_id="$1"
-    is_visible=false
-    
+    echo $NAME
+    echo "WORKSPACE" $workspace_id
     #for monitor in $(aerospace list-monitors | awk '{print $1}'); do
     visible_workspace=$(rift-cli query workspaces | jq '.[] | select(.is_active == true) | .index')
     if [ "$workspace_id" = "$visible_workspace" ]; then
-      is_visible=true
-      break
+      sketchybar --set $NAME background.color=0x88cc5500
+    else 
+      sketchybar --set $NAME background.color=0x22f0f0f0
     fi
     #done
-    
-    # Set background based on visibility
-    if [ "$is_visible" = true ]; then
-        sketchybar --set $NAME background.color=0x88cc5500
-    else
-        sketchybar --set $NAME background.color=0x22f0f0f0
-    fi
 fi

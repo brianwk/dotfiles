@@ -1,6 +1,6 @@
 #!/bin/bash
 
-sketchybar --add event rift_workspace_change
+sketchybar --add event rift_workspace_changed
 
 # Determine how many monitors are connected once
 MONITOR_COUNT=$(rift-cli query displays | jq -r '.[] | .screen_id' | wc -l)
@@ -20,7 +20,7 @@ for monitor in $(rift-cli query displays | jq -r '.[] | .screen_id'); do
 
     echo "Adding workspace $sid with label $label ($icon) on monitor $monitor"
     sketchybar --add item space.$sid left \
-        --subscribe space.$sid rift_workspace_change display_change system_woke \
+        --subscribe space.$sid rift_workspace_changed display_changed system_woke \
         --set space.$sid \
         background.color="$background" \
         background.corner_radius=5 \
@@ -46,4 +46,4 @@ sketchybar --add item workspace_sync center \
                  drawing=off \
                  script="$PLUGIN_DIR/rift.sh"
 
-sketchybar --trigger rift_workspace_change FOCUSED_WORKSPACE=$(rift-cli query workspaces | jq '.[] | select(.is_active == true) | .index')
+sketchybar --trigger rift_workspace_changed FOCUSED_WORKSPACE=$(rift-cli query workspaces | jq '.[] | select(.is_active == true) | .index')
