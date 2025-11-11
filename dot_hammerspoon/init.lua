@@ -127,6 +127,9 @@ function windowCreatedCallback(window, appName, event)
     local targetScreen = hs.screen.find(WORK_DISPLAY_UUID)
     if targetScreen then
         window:moveToScreen(targetScreen, false, false, 0)
+        if appName == "WezTerm" then
+            wmMoveToWorkspace(window, "9")
+        end
     end
 end
 
