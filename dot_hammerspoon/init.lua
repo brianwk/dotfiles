@@ -145,8 +145,8 @@ end
 
 function wmMoveToWorkspace(window, workspace)
     -- Get workspace with just leading digits
-    let workspaceIdx = workspace:match("^(%d+)")
-    os.execute("rift-cli execute workspace move-window " .. workspace .. " " .. window::id() .. " &")
+    local workspaceIdx = workspace:match("^(%d+)")
+    os.execute("rift-cli execute workspace move-window " .. workspaceIdx .. " " .. window:id() .. " &")
     -- os.execute("aerospace move-node-to-workspace --window-id " .. window:id() .. " " .. workspace .. " &")
 end
 

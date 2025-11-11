@@ -1,0 +1,60 @@
+#!/bin/bash
+
+sketchybar --add event aerospace_workspace_change
+
+# Determine how many monitors are connected once
+MONITOR_COUNT=$(aerospace list-monitors | awk '{print $1}' | wc -l | tr -d ' ')
+
+for monitor in $(aerospace list-monitors | awk '{print $1}'); do
+  for sid in $(aerospace list-workspaces --monitor "$monitor"); do
+    # Label is sid which if it contains more than a number it should strip out the number in front
+    if [[ "$sid" =~ ^[0-9]+$ ]]; then
+      label="$sid"
+    else
+      # Strip only leading digits
+      icon="$(echo "$sid" | sed -E 's/^[0-9]+//')"
+      # label should be the numbers from above
+      label="$(echo "$sid" | sed -E 's/[^0-9]+//g')"
+    fi
+    # Set background based on focused item, focused background should be 0x88cc5500
+    if [ "$(aerospace list-workspaces --focused)" = "$sid" ]; then
+      background=0x88cc5500
+    else
+      background=0x22f0f0f0
+    fi
+
+    echo "Adding workspace $sid with label $label ($icon) on monitor $monitor"
+    sketchybar --add item space.$sid left \
+        --subscribe space.$sid aerospace_workspace_change display_change system_woke \
+        --set space.$sid \
+        $(
+          if [ "$MONITOR_COUNT" -eq 2 ]; then
+            # Swap displays only when exactly 2 monitors are connected
+            echo display=$monitor
+          fi
+        ) \
+        background.color="$background" \
+        background.corner_radius=5 \
+        background.height=20 \
+        label.font.family="Hack Nerd Font" \
+        label.font.size=8 \
+        label.color=0xccf0f0f0 \
+        icon.padding_left=4 \
+        icon.padding_right=0 \
+	      icon="$icon" \
+        label="$label" \
+        label.y_offset=-6 \
+        label.padding_left=4 \
+        label.padding_right=4 \
+        click_script="aerospace workspace $sid" \
+        script="$CONFIG_DIR/plugins/aerospace.sh $sid"
+  done
+done
+
+# Add a periodic workspace sync item
+sketchybar --add item workspace_sync center \
+           --set workspace_sync update_freq=5 \
+                 drawing=off \
+                 script="$PLUGIN_DIR/aerospace.sh"
+
+sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)

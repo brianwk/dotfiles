@@ -58,12 +58,11 @@ auto_focus_blacklist = []
 #   RIFT_EVENT_JSON            # full JSON payload of the event
 #
 # Example (sketchybar integration):
-# run_on_start = [
-#   "rift-cli subscribe cli --event workspace_changed --command sh --args -c --args 'sketchybar --trigger rift_workspace_changed RIFT_WORKSPACE_NAME=\"$RIFT_WORKSPACE_NAME\" RIFT_WORKSPACE_ID=\"$RIFT_WORKSPACE_ID\"'",
+run_on_start = [
+   "rift-cli subscribe cli --event rift_workspace_changed --command sh --args -c --args 'sketchybar --trigger rift_workspace_changed RIFT_WORKSPACE_NAME=\"$RIFT_WORKSPACE_NAME\" RIFT_WORKSPACE_ID=\"$RIFT_WORKSPACE_ID\"'",
 #   "rift-cli subscribe cli --event windows_changed --command sh --args -c --args 'sketchybar --trigger rift_windows_changed RIFT_WORKSPACE_NAME=\"$RIFT_WORKSPACE_NAME\" RIFT_WINDOW_COUNT=\"$RIFT_WINDOW_COUNT\"'"
-# ]
+]
 
-run_on_start = []
 
 # Hot Reloading
 # - If true, rift will watch the config file for changes and reload automatically.
@@ -99,14 +98,14 @@ default_orientation = "perpendicular"
 #   Use the display's UUID as the key (for example, from system profiler or via rift CLI).
 
 [settings.layout.gaps.outer]
-top = 0
-left = 0
-bottom = 0
-right = 0
+top = 35
+left = 5
+bottom = 5
+right = 5
 
 [settings.layout.gaps.inner]
-horizontal = 0
-vertical = 0
+horizontal = 10
+vertical = 10
 
 # Example per-display overrides:
 # Replace the quoted key with your display's UUID. Only specify values you want to override.

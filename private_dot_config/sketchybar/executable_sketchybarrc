@@ -87,70 +87,14 @@ sketchybar --add item clock right \
            --add alias "Control Center,WiFi" right \
            --set "Control Center,WiFi" alias.color=0xff151515 alias.scale=0.8 icon.drawing=off label.drawing=off padding_right=1 padding_left=1 background.height=20 background.corner_radius=5 background.color=0x66f0f0f0
 
-sketchybar --add event aerospace_workspace_change
+#source $PLUGIN_DIR/aerospace/config
+source $PLUGIN_DIR/rift/config
 
-# Determine how many monitors are connected once
-MONITOR_COUNT=$(aerospace list-monitors | awk '{print $1}' | wc -l | tr -d ' ')
-
-for monitor in $(aerospace list-monitors | awk '{print $1}'); do
-  for sid in $(aerospace list-workspaces --monitor "$monitor"); do
-    # Label is sid which if it contains more than a number it should strip out the number in front
-    if [[ "$sid" =~ ^[0-9]+$ ]]; then
-      label="$sid"
-    else
-      # Strip only leading digits
-      icon="$(echo "$sid" | sed -E 's/^[0-9]+//')"
-      # label should be the numbers from above
-      label="$(echo "$sid" | sed -E 's/[^0-9]+//g')"
-    fi
-    # Set background based on focused item, focused background should be 0x88cc5500
-    if [ "$(aerospace list-workspaces --focused)" = "$sid" ]; then
-      background=0x88cc5500
-    else
-      background=0x22f0f0f0
-    fi
-
-    echo "Adding workspace $sid with label $label ($icon) on monitor $monitor"
-    sketchybar --add item space.$sid left \
-        --subscribe space.$sid aerospace_workspace_change display_change system_woke \
-        --set space.$sid \
-        $(
-          if [ "$MONITOR_COUNT" -eq 2 ]; then
-            # Swap displays only when exactly 2 monitors are connected
-            echo display=$monitor
-          fi
-        ) \
-        background.color="$background" \
-        background.corner_radius=5 \
-        background.height=20 \
-        label.font.family="Hack Nerd Font" \
-        label.font.size=8 \
-        label.color=0xccf0f0f0 \
-        icon.padding_left=4 \
-        icon.padding_right=0 \
-	      icon="$icon" \
-        label="$label" \
-        label.y_offset=-6 \
-        label.padding_left=4 \
-        label.padding_right=4 \
-        click_script="aerospace workspace $sid" \
-        script="$CONFIG_DIR/plugins/aerospace.sh $sid"
-  done
-done
-
-sketchybar --add item front_app left \
+sketchybar --add event sketchybar --add item front_app left \
     --set front_app icon=󰣆 icon.font.size=16 icon.background.color=0x66f0f0f0 icon.background.corner_radius=5 icon.background.height=20 label.font.size=16 label.y_offset=-1 background.height=20 background.corner_radius=5 background.padding_left=8 background.color=0x22f0f0f0 label.padding_right=4 icon.padding_left=5 icon.padding_right=5 padding_left=8 padding_right=0 script="$CONFIG_DIR/plugins/front_app.sh" \
     --subscribe front_app front_app_switched
 
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
-
-# Add a periodic workspace sync item
-sketchybar --add item workspace_sync center \
-           --set workspace_sync update_freq=5 \
-                 drawing=off \
-                 script="$PLUGIN_DIR/aerospace.sh"
-
-sketchybar --trigger aerospace_workspace_change FOCUSED_WORKSPACE=$(aerospace list-workspaces --focused)
 
 cd /Users/briankaplan/dev-current/brain-test/ && source .venv/bin/activate && python3 test_brain.py &
