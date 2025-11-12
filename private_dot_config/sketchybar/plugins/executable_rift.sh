@@ -24,6 +24,7 @@ add_workspace_if_missing() {
         sketchybar --add item space.$sid left \
             --subscribe space.$sid rift_workspace_changed display_change system_woke \
             --set space.$sid \
+            display=$monitor \
             background.color="$background" \
             background.corner_radius=5 \
             background.height=20 \
@@ -74,9 +75,9 @@ if [ -n "$1" ]; then
     #for monitor in $(aerospace list-monitors | awk '{print $1}'); do
     visible_workspace=$(rift-cli query workspaces | jq '.[] | select(.is_active == true) | .index')
     if [ "$workspace_id" = "$visible_workspace" ]; then
-      sketchybar --set $NAME display=active background.color=0x88cc5500
+      sketchybar --set $NAME display=$monitor background.color=0x88cc5500
     else 
-      sketchybar --set $NAME display=active background.color=0x22f0f0f0
+      sketchybar --set $NAME display=$monitor background.color=0x22f0f0f0
     fi
     #done
 fi

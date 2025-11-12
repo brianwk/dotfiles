@@ -22,7 +22,7 @@ for monitor in $(rift-cli query displays | jq -r '.[] | .screen_id'); do
     sketchybar --add item space.$sid left \
         --subscribe space.$sid rift_workspace_changed display_changed system_woke \
         --set space.$sid \
-        background.color="$background" \
+        background.color="0x22f0f0f0" \
         background.corner_radius=5 \
         background.height=20 \
         label.font.family="Hack Nerd Font" \
@@ -37,6 +37,7 @@ for monitor in $(rift-cli query displays | jq -r '.[] | .screen_id'); do
         label.padding_right=4 \
         click_script="rift-cli execute workspace switch $sid" \
         script="$CONFIG_DIR/plugins/rift.sh $sid"
+    sketchybar --set space.$sid display=active background.color="$background"
   done
 done
 
