@@ -44,7 +44,7 @@ mouse_hides_on_focus = true
 # Examples:
 #   "com.apple.dock", "com.apple.systemuiserver", "com.apple.SecurityAgent",
 #   "com.raycast.macos", "com.apple.Spotlight"
-auto_focus_blacklist = ["com.apple.ScreenContinuity"]
+auto_focus_blacklist = ["app.zen-browser.zen", "com.apple.ScreenContinuity"]
 
 # Run commands on start
 #
@@ -302,7 +302,7 @@ app_rules = [
   { app_id = "com.apple.mail", workspace = 1 },
   { app_id = "com.apple.MobileSMS", workspace = 1 }, 
   { app_id = "com.apple.iCal", workspace = 1 }, 
-  { app_id = "app.zen-browser.zen", workspace = 8 }, 
+  { app_id = "app.zen-browser.zen", workspace = 0 }, 
   { app_id = "com.apple.Safari", workspace = 2 }, 
   { app_id = "com.google.Chrome", workspace = 2 }, 
   { app_id = "com.apple.iphonesimulator", workspace = 3 }, 
