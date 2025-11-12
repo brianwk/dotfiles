@@ -1,44 +1,50 @@
 #!/bin/bash
 
+RIFT_CLI="/Users/briankaplan/dev-current/rift/bin/rift-cli"
+
 sketchybar --add event rift_workspace_changed
 
-# Determine how many monitors are connected once
-MONITOR_COUNT=$(rift-cli query displays | jq -r '.[] | .screen_id' | wc -l)
-
-for monitor in $(rift-cli query displays | jq -r '.[] | .screen_id'); do
-  for sid in $(rift-cli query workspaces | jq -r '.[] | .index'); do
+  for sid in $($RIFT_CLI query workspaces | jq -r '.[].index'); do
     # Label is sid which if it contains more than a number it should strip out the number in front
     label="$sid"
     # Strip only leading digits
-    icon="$(rift-cli query workspaces | jq -r '.['$sid'] | .name' | sed -E 's/^[0-9]+//')"
-    # Set background based on focused item, focused background should be 0x88cc5500
-    if [ "$(rift-cli query workspaces | jq '.[] | select(.is_active == true) | .index')" = "$sid" ]; then
-      background=0x88cc5500
-    else
-      background=0x22f0f0f0
-    fi
-
-    echo "Adding workspace $sid with label $label ($icon) on monitor $monitor"
-    sketchybar --add item space.$sid left \
-        --subscribe space.$sid rift_workspace_changed display_changed system_woke \
-        --set space.$sid \
-        background.color="0x22f0f0f0" \
-        background.corner_radius=5 \
-        background.height=20 \
-        label.font.family="Hack Nerd Font" \
-        label.font.size=8 \
-        label.color=0xccf0f0f0 \
-        icon.padding_left=4 \
-        icon.padding_right=0 \
-	      icon="$icon" \
-        label="$label" \
-        label.y_offset=-6 \
-        label.padding_left=4 \
-        label.padding_right=4 \
-        click_script="rift-cli execute workspace switch $sid" \
-        script="$CONFIG_DIR/plugins/rift.sh $sid"
-    sketchybar --set space.$sid display=active background.color="$background"
-  done
+    icon="$(echo "$sid" | sed -E 's/^[0-9]+//')"
+    $RIFT_CLI query displays | jq -cr '.[] | @json' | while IFS= read -r monitor_json; do
+      display_uuid=$(echo $monitor_json | jq -r '.uuid');
+      display_space=$(echo $monitor_json | jq -r '.space');
+      monitor=$(sketchybar --query displays | jq -r '.[] | select(.UUID == "'$display_uuid'") | ."arrangement-id"');
+      if [ -z "$monitor" ] || [ -z "$display_uuid" ] || [ -z "$display_space" ]; then
+        continue
+      fi
+      workspace=$($RIFT_CLI query workspaces --space-id "$display_space")
+      # Set background based on focused item, focused background should be 0x88cc5500
+      if [ "$(echo $workspace | jq -r '.[] | select(.is_active) | .index')" = "$sid" ]; then
+        background=0x88cc5500
+      else
+        background=0x22f0f0f0
+      fi
+      icon=$(echo $workspace | jq -r '.['$sid'] | .name')
+      echo "Adding workspace $sid with label $label ($icon) on monitor $monitor"
+      sketchybar --add item space.$sid.$monitor left display=$monitor \
+          --subscribe space.$sid.$monitor rift_workspace_changed display_change system_woke \
+          --set space.$sid.$monitor \
+          display=$monitor \
+          background.color="$background" \
+          background.corner_radius=5 \
+          background.height=20 \
+          label.font.family="Hack Nerd Font" \
+          label.font.size=8 \
+          label.color=0xccf0f0f0 \
+          icon.padding_left=4 \
+          icon.padding_right=0 \
+          icon="$icon" \
+          label="$label" \
+          label.y_offset=-6 \
+          label.padding_left=4 \
+          label.padding_right=4 \
+          click_script="$RIFT_CLI workspace switch $sid" \
+          script="$CONFIG_DIR/plugins/rift.sh $sid"
+    done
 done
 
 # Add a periodic workspace sync item
@@ -47,4 +53,4 @@ done
 #                 drawing=off \
 #                 script="$PLUGIN_DIR/rift.sh"
 
-sketchybar --trigger rift_workspace_changed FOCUSED_WORKSPACE=$(rift-cli query workspaces | jq '.[] | select(.is_active == true) | .index')
+#sketchybar --trigger rift_workspace_changed FOCUSED_WORKSPACE=$(rift-cli query workspaces | jq -r '.[] | select(.is_active == true) | .index')

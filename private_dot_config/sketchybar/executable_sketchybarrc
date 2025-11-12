@@ -97,4 +97,4 @@ sketchybar --add event sketchybar --add item front_app q \
 ##### Force all scripts to run the first time (never do this in a script) #####
 sketchybar --update
 
-cd /Users/briankaplan/dev-current/brain-test/ && source .venv/bin/activate && python3 test_brain.py &
+#cd /Users/briankaplan/dev-current/brain-test/ && source .venv/bin/activate && python3 test_brain.py &
