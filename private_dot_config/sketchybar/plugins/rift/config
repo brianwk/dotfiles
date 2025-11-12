@@ -23,7 +23,8 @@ sketchybar --add event rift_workspace_changed
       else
         background=0x22f0f0f0
       fi
-      icon=$(echo $workspace | jq -r '.['$sid'] | .name')
+      # strip leading digits from name for icon
+      icon=$(echo $workspace | jq -r '.['$sid'] | .name' | sed -E 's/^[0-9]+//')
       echo "Adding workspace $sid with label $label ($icon) on monitor $monitor"
       sketchybar --add item space.$sid.$monitor left display=$monitor \
           --subscribe space.$sid.$monitor rift_workspace_changed display_change system_woke \
@@ -42,15 +43,7 @@ sketchybar --add event rift_workspace_changed
           label.y_offset=-6 \
           label.padding_left=4 \
           label.padding_right=4 \
-          click_script="$RIFT_CLI workspace switch $sid" \
+          click_script="$RIFT_CLI execute workspace switch $sid" \
           script="$CONFIG_DIR/plugins/rift.sh $sid"
     done
 done
-
-# Add a periodic workspace sync item
-#sketchybar --add item workspace_sync center \
-#           --set workspace_sync update_freq=5 \
-#                 drawing=off \
-#                 script="$PLUGIN_DIR/rift.sh"
-
-#sketchybar --trigger rift_workspace_changed FOCUSED_WORKSPACE=$(rift-cli query workspaces | jq -r '.[] | select(.is_active == true) | .index')
