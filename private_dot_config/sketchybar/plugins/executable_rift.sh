@@ -74,9 +74,9 @@ if [ -n "$1" ]; then
     #for monitor in $(aerospace list-monitors | awk '{print $1}'); do
     visible_workspace=$(rift-cli query workspaces | jq '.[] | select(.is_active == true) | .index')
     if [ "$workspace_id" = "$visible_workspace" ]; then
-      sketchybar --set $NAME background.color=0x88cc5500
+      sketchybar --set $NAME display=$DID background.color=0x88cc5500
     else 
-      sketchybar --set $NAME background.color=0x22f0f0f0
+      sketchybar --set $NAME display=$DID background.color=0x22f0f0f0
     fi
     #done
 fi

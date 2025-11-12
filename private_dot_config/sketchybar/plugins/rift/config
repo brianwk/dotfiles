@@ -22,6 +22,7 @@ for monitor in $(rift-cli query displays | jq -r '.[] | .screen_id'); do
     sketchybar --add item space.$sid left \
         --subscribe space.$sid rift_workspace_changed display_changed system_woke \
         --set space.$sid \
+        display="$DID" \
         background.color="$background" \
         background.corner_radius=5 \
         background.height=20 \
