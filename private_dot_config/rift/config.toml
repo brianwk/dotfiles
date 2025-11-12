@@ -168,7 +168,7 @@ swipe_vertical_tolerance = 0.4
 # Skip empty workspaces when swiping
 skip_empty = true
 # Number of fingers required for swipe
-fingers = 3
+fingers = 4 
 # Normalized horizontal distance (0..1) to trigger swipe for NSTouch-based detection
 distance_pct = 0.08
 # Haptic feedback on commit (generic | alignment | level_change)
