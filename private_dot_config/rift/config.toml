@@ -44,7 +44,7 @@ mouse_hides_on_focus = true
 # Examples:
 #   "com.apple.dock", "com.apple.systemuiserver", "com.apple.SecurityAgent",
 #   "com.raycast.macos", "com.apple.Spotlight"
-auto_focus_blacklist = ["app.zen-browser.zen", "com.apple.ScreenContinuity"]
+auto_focus_blacklist = ["com.electron.brain.fm", "app.zen-browser.zen", "com.apple.ScreenContinuity"]
 
 # Run commands on start
 #
@@ -286,11 +286,11 @@ app_rules = [
   { app_id = "com.apple.TV", floating = true },
   { app_id = "com.apple.SystemProfiler", floating = true },
   { app_id = "com.expressvpn.ExpressVPN", floating = true },
-  { app_id = "com.electron.brain.fm", floating = true },
+  { app_id = "com.electron.brain.fm", workspace = 0, floating = true },
   { app_id = "com.apple.finder", floating = true },
   { app_id = "org.hammerspoon.Hammerspoon", floating = true },
-  { app_id = "picture-in-picture", floating = true },
-  { app_id = "Picture in Picture", floating = true },
+  { title_substring = "picture-in-picture", floating = true },
+  { title_substring = "Picture in Picture", floating = true },
   { app_id = "com.apple.AccessibilityInspector", floating = true },
   { app_id = "com.apple.Password", floating = true },
   { app_id = "coreautha", floating = true },
