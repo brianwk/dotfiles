@@ -346,8 +346,6 @@ comb2 = "Meta + Shift"
 # - debug / serialize / save_and_exit
 # - show_timing
 
-"Alt + Z" = "toggle_space_activated"
-
 "Alt + A" = { prev_workspace = true }
 "Alt + S" = { next_workspace = true }
 
@@ -361,6 +359,7 @@ comb2 = "Meta + Shift"
 "comb1 + K" = { move_node = "up" }
 "comb1 + L" = { move_node = "right" }
 
+"comb2 + G" = "unjoin_windows"
 "comb2 + H" = { join_window = "left" }
 "comb2 + J" = { join_window = "down" }
 "comb2 + K" = { join_window = "up" }
@@ -392,7 +391,6 @@ comb2 = "Meta + Shift"
 
 "Alt + Comma" = "toggle_stack"
 "Alt + Slash" = "toggle_orientation"
-"comb1 + Z" = "unjoin_windows"
 
 "Alt + Shift + Space" = "toggle_window_floating"
 "Alt + Q" = "toggle_fullscreen"
