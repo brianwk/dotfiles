@@ -202,7 +202,7 @@ workspace_auto_back_and_forth = false
 # Default workspace to activate on startup (0-based index).
 # If omitted, defaults to 0 (first workspace). Must be less than default_workspace_count.
 # Uncomment to change:
-# default_workspace = 0
+default_workspace = 9 
 
 # Workspace names (indexed order). If fewer than default_workspace_count are provided,
 # remaining workspaces are named "Workspace X".
