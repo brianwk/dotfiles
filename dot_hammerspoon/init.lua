@@ -128,7 +128,6 @@ function windowCreatedCallback(window, appName, event)
     local windowScreen = window:screen()
     if targetScreen and targetScreen:getUUID() ~= windowScreen:getUUID() then
         wmMoveToDisplay(window, targetScreen)
-        window:moveToScreen(targetScreen, false, false, 0)
         if appName == "WezTerm" then
             wmMoveToWorkspace(window, "9")
         end
@@ -162,14 +161,17 @@ end
 
 function wmMoveToDisplay(win, nextScreen)
   local currentScreen = win:screen()
-  local screens = hs.screen.allScreens()
+
+  if nextScreen:getUUID() == currentScreen:getUUID() then
+    return
+  end
 
   local winFrame = win:frame()
   local nextScreenFrame = nextScreen:frame()
 
-  -- Calculate new position: move the window to the center of the next screen
-  local newX = nextScreenFrame.x + (nextScreenFrame.w - winFrame.w) / 2
-  local newY = nextScreenFrame.y + (nextScreenFrame.h - winFrame.h) / 2
+  -- Calculate new position: move the window to the right edge of the next screen
+  local newX = (nextScreenFrame.x + winFrame.w) - (nextScreenFrame.w - 5)
+  local newY = (nextScreenFrame.y + winFrame.h) / 2
 
   -- Ensure the new coordinates are within the bounds of the new screen
   newX = math.max(nextScreenFrame.x, newX)
