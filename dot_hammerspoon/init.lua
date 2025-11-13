@@ -168,7 +168,7 @@ function wmMoveToDisplay(win, nextScreen)
   local nextScreenFrame = nextScreen:frame()
 
   -- Calculate new position: move the window to the right edge of the next screen
-  local newX = (nextScreenFrame.x + winFrame.w) - (nextScreenFrame.w - 5)
+  local newX = (nextScreenFrame.x + winFrame.w) - (nextScreenFrame.w - winFrame.w)
   local newY = (nextScreenFrame.y + winFrame.h) / 2
 
   -- Ensure the new coordinates are within the bounds of the new screen
@@ -176,7 +176,7 @@ function wmMoveToDisplay(win, nextScreen)
   newY = math.max(nextScreenFrame.y, newY)
 
   -- Set the window's new frame
-  win:setFrame({x = newX, y = newY, w = winFrame.w, h = winFrame.h})
+  win:setFrame({x = newX, y = newY, w = 1, h = 1})
 end
 
 function wmMoveToWorkspace(window, workspace)
