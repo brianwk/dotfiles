@@ -126,12 +126,10 @@ end
 function windowCreatedCallback(window, appName, event)
     local targetScreen = hs.screen.find(WORK_DISPLAY_UUID)
     local windowScreen = window:screen()
-    if targetScreen and targetScreen:getUUID() ~= windowScreen:getUUID() then
-        wmMoveToDisplay(window, targetScreen)
-        if appName == "WezTerm" then
-            wmMoveToWorkspace(window, "9")
-        end
-    end
+    wmMoveToDisplay(window, targetScreen)
+    -- if appName == "WezTerm" then
+    --    wmMoveToWorkspace(window, "9")
+    -- end
 end
 
 -- Define the callback function to run when a title changes.
@@ -221,5 +219,5 @@ end
 -- Subscribe the filter to the 'titleChanged' event.
 -- The filter will now begin monitoring for this event.
 codeFilter:subscribe(hs.window.filter.windowCreated, windowCreatedCallback)
-codeFilter:subscribe(hs.window.filter.windowTitleChanged, titleChangedCallback)
+--codeFilter:subscribe(hs.window.filter.windowTitleChanged, titleChangedCallback)
 wezTermFilter:subscribe(hs.window.filter.windowCreated, windowCreatedCallback)
