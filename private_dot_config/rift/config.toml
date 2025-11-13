@@ -388,7 +388,7 @@ comb2 = "Meta + Shift"
 "comb1 + 8" = { move_window_to_workspace = 8 }
 "comb1 + 9" = { move_window_to_workspace = 9 }
 
-"Alt + Tab" = "switch_to_last_workspace"
+"Alt + T" = "switch_to_last_workspace"
 
 "Alt + Comma" = "toggle_stack"
 "Alt + Slash" = "toggle_orientation"
