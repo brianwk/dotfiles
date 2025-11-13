@@ -60,7 +60,8 @@ auto_focus_blacklist = ["com.electron.brain.fm", "app.zen-browser.zen", "com.app
 # Example (sketchybar integration):
 run_on_start = [
     "rift-cli subscribe cli --event workspace_changed --command sh --args -c --args 'sketchybar --trigger rift_workspace_changed RIFT_WORKSPACE_NAME=$RIFT_WORKSPACE_NAME FOCUSED_WORKSPACE=$RIFT_WORKSPACE_ID'",
-"borders active_color=0xcccc5500 inactive_color=0x66f0f0f0 width=8.0 hidpi=on style=square"
+"borders active_color=0xcccc5500 inactive_color=0x66f0f0f0 width=8.0 hidpi=on style=square",
+"sketchybar --reload"
 ]
 
 
