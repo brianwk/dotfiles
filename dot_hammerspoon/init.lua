@@ -72,20 +72,20 @@ function reloadSketchyBar()
     end
     hs.execute(SKETCHYBAR_PATH .. " --reorder " .. table.concat(spaces, " "), true)
 
-    reorderCodeWindows()
+    -- reorderCodeWindows()
 end
 
 function runOnUnlock(eventType)
     print("Caffeinate event: " .. tostring(eventType))
     if (eventType == hs.caffeinate.watcher.screensDidUnlock) then
         -- print("Screen unlocked, reloading SketchyBar in 5s")
-        reorderCodeWindows()
+        -- reorderCodeWindows()
         -- reloadTimer = hs.timer.doAfter(5, reorderCodeWindows)
     end
 end
 
-lockWatcher = hs.caffeinate.watcher.new(runOnUnlock)
-lockWatcher:start()
+--lockWatcher = hs.caffeinate.watcher.new(runOnUnlock)
+--lockWatcher:start()
 
 function screenLayoutChangedCallback()
     --if reloadTimer and reloadTimer:running() then
@@ -98,9 +98,9 @@ function screenLayoutChangedCallback()
 end
 
 -- Create a screen watcher object
-screenWatcher = hs.screen.watcher.newWithActiveScreen(screenLayoutChangedCallback)
+--screenWatcher = hs.screen.watcher.newWithActiveScreen(screenLayoutChangedCallback)
 -- Start the screen watcher
-screenWatcher:start()
+--screenWatcher:start()
 
 
 codeFilter = hs.window.filter.new{'Code - Insiders', 'Code'}
@@ -168,8 +168,8 @@ function wmMoveToDisplay(win, nextScreen)
   local nextScreenFrame = nextScreen:frame()
 
   -- Calculate new position: move the window to the right edge of the next screen
-  local newX = (nextScreenFrame.x + winFrame.w) - (nextScreenFrame.w - winFrame.w)
-  local newY = (nextScreenFrame.y + winFrame.h) / 2
+  local newX = nextScreenFrame.x + (nextScreenFrame.w - winFrame.w) / 2
+  local newY = nextScreenFrame.y + (nextScreenFrame.h - winFrame.h) / 2
 
   -- Ensure the new coordinates are within the bounds of the new screen
   newX = math.max(nextScreenFrame.x, newX)
