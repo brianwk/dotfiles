@@ -1,30 +1,48 @@
 #!/bin/bash
 
-RIFT_CLI="/Users/briankaplan/dev-current/rift/bin/rift-cli"
+set -e
+
+RIFT_CLI="/Users/briankaplan/dev-current/rift/target/debug/rift-cli"
 
 sketchybar --add event rift_workspace_changed
 
-  for sid in $($RIFT_CLI query workspaces | jq -r '.[].index'); do
+$RIFT_CLI query workspaces | jq -r '.[] | @json' | while IFS= read -r workspace_json; do
+    sid=$(echo $workspace_json | jq -r '.name' | grep -o '[0-9]')
+    echo $workspace_json | hexdump -C
+    echo "SID: "$sid | hexdump -C
     # Label is sid which if it contains more than a number it should strip out the number in front
     label="$sid"
     # Strip only leading digits
-    icon="$(echo "$sid" | sed -E 's/^[0-9]+//')"
-    $RIFT_CLI query displays | jq -cr '.[] | @json' | while IFS= read -r monitor_json; do
+    icon=$(echo $workspace_json | jq -r '.name' | sed -E 's/^[0-9]+//')
+    if [ -z "$sid" ]; then
+      continue
+    fi
+    echo "$icon" | hexdump -C
+    $RIFT_CLI query displays | jq -r '.[] | @json' | while IFS= read -r monitor_json; do
+      echo "$monitor_json" | hexdump -C
       display_uuid=$(echo $monitor_json | jq -r '.uuid');
       display_space=$(echo $monitor_json | jq -r '.space');
       monitor=$(sketchybar --query displays | jq -r '.[] | select(.UUID == "'$display_uuid'") | ."arrangement-id"');
+      sketchy_item=$(sketchybar --query item space.$sid.$monitor | jq -r)
+      echo "SKETCHY_ITEM:" space"."$sid"."$monitor" "$sketchy_item
+      if [ -n "$sketchy_item" ]; then
+        continue
+      fi
+      echo "$monitor" | hexdump -C
+      echo "$display_uuid" | hexdump -C
+      echo "$display_space" | hexdump -C
       if [ -z "$monitor" ] || [ -z "$display_uuid" ] || [ -z "$display_space" ]; then
         continue
       fi
       workspace=$($RIFT_CLI query workspaces --space-id "$display_space")
       # Set background based on focused item, focused background should be 0x88cc5500
-      if [ "$(echo $workspace | jq -r '.[] | select(.is_active) | .index')" = "$sid" ]; then
+      if [ "$(echo $workspace | jq -jr '.[] | select(.is_active) | .index')" = "$sid" ]; then
         background=0x88cc5500
       else
         background=0x22f0f0f0
       fi
+      echo "WORKSPACE:" $workspace | hexdump -C
       # strip leading digits from name for icon
-      icon=$(echo $workspace | jq -r '.['$sid'] | .name' | sed -E 's/^[0-9]+//')
       echo "Adding workspace $sid with label $label ($icon) on monitor $monitor"
       sketchybar --add item space.$sid.$monitor left display=$monitor \
           --subscribe space.$sid.$monitor rift_workspace_changed display_change system_woke \
