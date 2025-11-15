@@ -313,7 +313,9 @@ app_rules = [
   { app_id = "com.microsoft.VSCodeInsiders", title_regex = ".*Architary$", workspace = 5 }, 
   { app_id = "com.microsoft.VSCode", title_regex = ".*CRC$", workspace = 6 }, 
   { app_id = "com.microsoft.VSCode", title_regex = ".*BGA$", workspace = 7 }, 
-  { app_id = "com.microsoft.VSCodeInsiders", workspace = 8 }
+  { app_id = "com.microsoft.VSCodeInsiders", workspace = 8 },
+  # XXX: Workaround: send all Code to 8
+  { app_id ="com.microsoft.VSCode", workspace = 8 }
 #  { app_id = "com.github.wez.wezterm", workspace = 9 }
 ]
 # Modifier combinations that can be reused in key bindings
