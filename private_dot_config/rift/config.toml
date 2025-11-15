@@ -34,7 +34,7 @@ default_disable = false
 # - mouse_hides_on_focus: hide the mouse cursor after focusing a window
 focus_follows_mouse = true
 mouse_follows_focus = false 
-mouse_hides_on_focus = true
+mouse_hides_on_focus = false
 # focus_follows_mouse_disable_hotkey temporarily suspends focus-follows-mouse while held
 # e.g. "Fn"; omit or set to null to keep focus-follows-mouse always active
 #focus_follows_mouse_disable_hotkey = "Fn"
