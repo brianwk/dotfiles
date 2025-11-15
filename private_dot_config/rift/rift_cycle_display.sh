@@ -19,4 +19,3 @@ fi
 echo "Next Display Key: "$NEXT_KEY
 
 rift-cli execute display move-mouse-to-index $NEXT_KEY
-rift-cli execute window focus next
