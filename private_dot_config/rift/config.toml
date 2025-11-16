@@ -294,12 +294,10 @@ app_rules = [
   { title_substring = "Picture in Picture", floating = true },
   { app_id = "com.apple.AccessibilityInspector", floating = true },
   { app_id = "com.apple.Password", floating = true },
-  { app_id = "coreautha", floating = true },
   { app_id = "com.apple.Notes", floating = true },
   { app_id = "com.apple.LinkedNotesUIService", floating = true },
-  { app_id = "com.apple.LinkedNotesUIService", floating = true },
   { app_id = "com.apple.ScreenContinuity", floating = true },
-  { app_id = "com.google.Chrome", title_regex = "^DevTools.*", workspace = 2, floating = true },
+  { title_regex = "^DevTools.*", workspace = 2, floating = true },
   { app_id = "com.apple.mail", workspace = 1 },
   { app_id = "com.apple.MobileSMS", workspace = 1 }, 
   { app_id = "com.apple.iCal", workspace = 1 }, 
@@ -307,16 +305,17 @@ app_rules = [
   { app_id = "com.apple.Safari", workspace = 2 }, 
   { app_id = "com.google.Chrome", workspace = 2 }, 
   { app_id = "com.apple.iphonesimulator", workspace = 3 }, 
-  { app_id = "com.microsoft.VSCode", title_regex = ".*DEFAULT$", workspace = 3 }, 
-  { app_id = "com.microsoft.VSCode", title_regex = ".*Pulse Report$", workspace = 4 }, 
-  { app_id = "com.microsoft.VSCode", title_regex = ".*Architary$", workspace = 5 }, 
-  { app_id = "com.microsoft.VSCodeInsiders", title_regex = ".*Architary$", workspace = 5 }, 
-  { app_id = "com.microsoft.VSCode", title_regex = ".*CRC$", workspace = 6 }, 
-  { app_id = "com.microsoft.VSCode", title_regex = ".*BGA$", workspace = 7 }, 
-  { app_id = "com.microsoft.VSCodeInsiders", workspace = 8 },
+  { title_substring = "Rust", workspace = 5 },
+  { title_substring = "DEFAULT", workspace = 3 }, 
+  { title_substring = "Pulse Report", workspace = 4 }, 
+  { title_substring = "Architary", workspace = 5 }, 
+  { title_substring = "CRC", workspace = 6 }, 
+  { title_substring = "BGA", workspace = 7 }, 
+  { title_substring = "INSIDERS", workspace = 8 },
+  #{ app_id = "com.microsoft.VSCodeInsiders", workspace = 0 },
   # XXX: Workaround: send all Code to 8
-  { app_id ="com.microsoft.VSCode", workspace = 8 }
-#  { app_id = "com.github.wez.wezterm", workspace = 9 }
+  #{ app_id ="com.microsoft.VSCode", workspace = 8 },
+  { app_id = "com.github.wez.wezterm", workspace = 9 }
 ]
 # Modifier combinations that can be reused in key bindings
 # Define common modifier combinations to avoid repetition.

@@ -7,14 +7,16 @@ RIFT_CLI="/Users/briankaplan/dev-current/rift/target/debug/rift-cli"
 TARGET_WINDOW_TITLES=( "Visual Studio Code" "Visual Studio Code - Insiders" )
 JSON_INPUT="$@"
 
-WINDOW_ID=$(echo $JSON_INPUT | jq -r '.window_id.idx')
-WORKSPACE_ID=$(echo $JSON_INPUT | jq -r '.workspace_index')
-PREVIOUS_TITLE=$(echo $JSON_INPUT | jq -r '.previous_title')
-NEW_TITLE=$(echo $JSON_INPUT | jq -r '.new_title')
-DISPLAY_UUID=$(echo $JSON_INPUT | jq -r '.display_uuid')
+WINDOW_ID=$(echo $RIFT_EVENT_JSON | jq -r '.window_id.idx')
+WORKSPACE_ID=$RIFT_WORKSPACE_ID #$(echo $JSON_INPUT | jq -r '.workspace_index')
+PREVIOUS_TITLE=$RIFT_PREVIOUS_WINDOW_TITLE #$(echo $JSON_INPUT | jq -r '.previous_title')
+NEW_TITLE=$RIFT_WINDOW_TITLE #$(echo $JSON_INPUT | jq -r '.new_title')
+DISPLAY_UUID=$RIFT_DISPLAY_UUID #$(echo $JSON_INPUT | jq -r '.display_uuid')
 
-if [[ ${TARGET_WINDOW_TITLES[(ie)$PREVIOUS_TITLE]} == 0 ]]; then
-  echo "Ignoring window with previous title: " $PREVIOUS_TITLE
+echo $RIFT_EVENT_JSON >> /Users/briankaplan/rift_title_changed.log
+
+if [[ ${TARGET_WINDOW_TITLES[(Ie)$PREVIOUS_TITLE]} == 0 ]]; then
+  echo "Ignoring window with previous title: " $PREVIOUS_TITLE >> /Users/briankaplan/rift_title_changed.log
   exit 2
 fi
 
