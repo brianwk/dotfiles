@@ -1,108 +1,3 @@
--- This is a HammerSpoon configuration that enhances my AeroSpace and SketchyBar integration:
--- 1. Watches for screen unlock events and screen layout changes.
--- 2. On such events, it reloads SketchyBar configuration to ensure spaces are
---    correctly assigned to displays based on the number of active screens.
---    It also reorders Visual Studio Code windows to specific workspaces based on their profile.
--- 3. Monitors Visual Studio Code windows and moves them to specific workspaces
---    based on the project name in the window title.
--- I made this script to bandaid issues with multi-monitor setups with AeroSpace and SketchyBar.
-
-local reloadTimer
-
-local SKETCHYBAR_PATH = "/opt/homebrew/bin/sketchybar"
-local WORK_DISPLAY_UUID = "35D8FFE8-6A4B-45DF-BB20-14D3D229A5B8"
-
-function getSketchyBarSpaces()
-    -- sketchybar --query bar | jq '.items' | grep 'space.' | awk -F'"' '{print $4}'
-    local handle = io.popen(SKETCHYBAR_PATH .. " --query bar | jq '.items' | grep '\"space.' | awk -F'\"' '{print $2}'")
-    local result = handle:read("*a")
-    handle:close()
-    local spaces = {}
-    for space in string.gmatch(result, "space%.%S+") do
-        table.insert(spaces, space)
-    end
-    -- How to sort by var space
-    table.sort(spaces, function(a, b)
-        local numA = tonumber(a:match("space%.(%d+)"))
-        local numB = tonumber(b:match("space%.(%d+)"))
-        return numA < numB
-    end)
-    return spaces
-end
-
-function getSketchyBarSpaceDisplay(space)
-    -- need to get first key in bounding_rects to get display number
-    -- value will be like "display-1" or "display-2"
-    -- sketchybar --query space | jq '.bounding_rects'
-    local handle = io.popen(SKETCHYBAR_PATH .. " --query " .. space .. " | jq '.bounding_rects | to_entries[0].key'")
-    local result = handle:read("*a")
-    handle:close()
-    -- Return the display number without "display-" prefix
-    -- strip leading / trailing quotes
-    return result:gsub("display%-", ""):gsub("[%s\"]+", "")
-end
-
-function reloadSketchyBar()
-    -- Get a table of all active screens
-    local allScreens = hs.screen.allScreens()
-
-    -- Get the number of screens
-    local numberOfDisplays = #allScreens
-    local spaces = getSketchyBarSpaces()
-    print("Number of displays: " .. numberOfDisplays)
-    print("Spaces: " .. table.concat(spaces, ", "))
-    -- Loop through the spaces and get the display for each
-    -- If the display number is greater than the number of screens, then set the space to be on display 1
-    for i, space in ipairs(spaces) do
-        local display = getSketchyBarSpaceDisplay(space)
-        print("Space: " .. space .. " is on display: " .. display)
-        local displayNumber = tonumber(display)
-        if numberOfDisplays == 1 then
-            print("Moving " .. space .. " from display " .. displayNumber .. " to display 1")
-            hs.execute(SKETCHYBAR_PATH .. " --set " .. space .. " display=1", true)
-        elseif displayNumber == 1 and i <= 4 then
-            print("Moving " .. space .. " from display " .. displayNumber .. " to display 2")
-            hs.execute(SKETCHYBAR_PATH .. " --set " .. space .. " display=2", true)
-        elseif displayNumber == 2 and i > 4 then
-            print("Moving " .. space .. " from display " .. displayNumber .. " to display 1")
-            hs.execute(SKETCHYBAR_PATH .. " --set " .. space .. " display=1", true)
-        else
-            print(space .. " is on display " .. tostring(displayNumber) .. " which is valid")
-        end
-    end
-    hs.execute(SKETCHYBAR_PATH .. " --reorder " .. table.concat(spaces, " "), true)
-
-    -- reorderCodeWindows()
-end
-
-function runOnUnlock(eventType)
-    print("Caffeinate event: " .. tostring(eventType))
-    if (eventType == hs.caffeinate.watcher.screensDidUnlock) then
-        -- print("Screen unlocked, reloading SketchyBar in 5s")
-        -- reorderCodeWindows()
-        -- reloadTimer = hs.timer.doAfter(5, reorderCodeWindows)
-    end
-end
-
---lockWatcher = hs.caffeinate.watcher.new(runOnUnlock)
---lockWatcher:start()
-
-function screenLayoutChangedCallback()
-    --if reloadTimer and reloadTimer:running() then
-    --    print("Stopping previous timer")
-	--reloadTimer:stop()
-    --end
-    -- print("Reloading SketchyBar in 5s")
-    --reloadTimer = hs.timer.doAfter(5, reorderCodeWindows)
-    reorderCodeWindows()
-end
-
--- Create a screen watcher object
---screenWatcher = hs.screen.watcher.newWithActiveScreen(screenLayoutChangedCallback)
--- Start the screen watcher
---screenWatcher:start()
-
-
 codeFilter = hs.window.filter.new{'Code - Insiders', 'Code'}
 wezTermFilter = hs.window.filter.new{'WezTerm'}
 
@@ -112,16 +7,10 @@ local workspaceMap = {
     ["Architary"] = "5",
     ["CRC"] = "6󰳶",
     ["BGA"] = "7󰘸",
-    ["SD"] = "8"
+    ["SD"] = "8",
+    ["INSIDERS"] = "8",
+    ["Rust"] = "8"
 }
-
-function reorderCodeWindows()
-    local codeWindows = codeFilter:getWindows()
-    for _, window in ipairs(codeWindows) do
-        -- run the callback titleChangedCallback logic once to ensure correct workspace
-        titleChangedCallback(window, nil, nil)
-    end
-end
 
 function windowCreatedCallback(window, appName, event)
     local targetScreen = hs.screen.find(WORK_DISPLAY_UUID)
@@ -158,6 +47,11 @@ function titleChangedCallback(window, appName, event)
 end
 
 function wmMoveToDisplay(win, nextScreen)
+  if not nextScreen then
+    -- No other screen to move to
+    return
+  end
+
   local currentScreen = win:screen()
 
   if nextScreen:getUUID() == currentScreen:getUUID() then
@@ -219,5 +113,5 @@ end
 -- Subscribe the filter to the 'titleChanged' event.
 -- The filter will now begin monitoring for this event.
 codeFilter:subscribe(hs.window.filter.windowCreated, windowCreatedCallback)
---codeFilter:subscribe(hs.window.filter.windowTitleChanged, titleChangedCallback)
+codeFilter:subscribe(hs.window.filter.windowTitleChanged, titleChangedCallback)
 wezTermFilter:subscribe(hs.window.filter.windowCreated, windowCreatedCallback)

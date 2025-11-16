@@ -305,7 +305,7 @@ app_rules = [
   { app_id = "com.apple.Safari", workspace = 2 }, 
   { app_id = "com.google.Chrome", workspace = 2 }, 
   { app_id = "com.apple.iphonesimulator", workspace = 3 }, 
-  { title_substring = "Rust", workspace = 5 },
+  { title_substring = "Rust", workspace = 8 },
   { title_substring = "DEFAULT", workspace = 3 }, 
   { title_substring = "Pulse Report", workspace = 4 }, 
   { title_substring = "Architary", workspace = 5 }, 
