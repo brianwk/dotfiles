@@ -35,6 +35,6 @@ if [[ -z "$NEW_WORKSPACE" ]]; then
 fi
 
 $RIFT_CLI execute workspace move-window $NEW_WORKSPACE $WINDOW_ID
-$RIFT_CLI execute workspace switch $NEW_WORKSPACE
+#$RIFT_CLI execute workspace switch $NEW_WORKSPACE
 
 exit 0 
