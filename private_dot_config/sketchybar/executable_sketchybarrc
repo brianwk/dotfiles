@@ -87,7 +87,8 @@ sketchybar --add item clock right \
            --add alias "Control Center,WiFi" right \
            --set "Control Center,WiFi" alias.color=0xff151515 alias.scale=0.8 icon.drawing=off label.drawing=off padding_right=1 padding_left=1 background.height=20 background.corner_radius=5 background.color=0x66f0f0f0 \
            --add item docker right \
-           --set docker icon="" label.drawing=off icon.drawing=off icon.background.corner_radius=5 icon.background.height=20 icon.background.color=0x66f0f0f0 padding_right=1 padding_left=1 background.height=20 background.corner_radius=5 background.color=0x22f0f0f0 update_freq=5 script="$PLUGIN_DIR/docker.sh"
+           --set docker icon="" label.drawing=off icon.drawing=off icon.background.corner_radius=5 icon.background.height=20 icon.background.color=0x66f0f0f0 padding_right=1 padding_left=1 background.height=20 background.corner_radius=5 background.color=0x22f0f0f0 update_freq=5 script="$PLUGIN_DIR/docker.sh" \
+           --subscribe docker system_woke
 
 #source $PLUGIN_DIR/aerospace/config
 source $PLUGIN_DIR/rift/config
