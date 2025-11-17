@@ -61,6 +61,7 @@ auto_focus_blacklist = ["com.electron.brain.fm", "app.zen-browser.zen", "com.app
 run_on_start = [
     "rift-cli subscribe cli --event workspace_changed --command sh --args -c --args 'sketchybar --trigger rift_workspace_changed RIFT_WORKSPACE_NAME=$RIFT_WORKSPACE_NAME FOCUSED_WORKSPACE=$RIFT_WORKSPACE_ID'",
 "borders active_color=0xcccc5500 inactive_color=0x66f0f0f0 width=8.0 hidpi=on style=square",
+    "rift-cli subscribe cli --event window_title_changed --command /Users/briankaplan/.config/rift/rift_title_changed.sh",
 "sketchybar --reload"
 ]
 
@@ -305,13 +306,13 @@ app_rules = [
   { app_id = "com.apple.Safari", workspace = 2 }, 
   { app_id = "com.google.Chrome", workspace = 2 }, 
   { app_id = "com.apple.iphonesimulator", workspace = 3 }, 
-  { title_substring = "Rust", workspace = 8 },
-  { title_substring = "DEFAULT", workspace = 3 }, 
-  { title_substring = "Pulse Report", workspace = 4 }, 
-  { title_substring = "Architary", workspace = 5 }, 
-  { title_substring = "CRC", workspace = 6 }, 
-  { title_substring = "BGA", workspace = 7 }, 
-  { title_substring = "INSIDERS", workspace = 8 },
+#  { title_substring = "Rust", workspace = 8 },
+#  { title_substring = "DEFAULT", workspace = 3 }, 
+#  { title_substring = "Pulse Report", workspace = 4 }, 
+#  { title_substring = "Architary", workspace = 5 }, 
+#  { title_substring = "CRC", workspace = 6 }, 
+#  { title_substring = "BGA", workspace = 7 }, 
+#  { title_substring = "INSIDERS", workspace = 8 },
   #{ app_id = "com.microsoft.VSCodeInsiders", workspace = 0 },
   # XXX: Workaround: send all Code to 8
   #{ app_id ="com.microsoft.VSCode", workspace = 8 },
