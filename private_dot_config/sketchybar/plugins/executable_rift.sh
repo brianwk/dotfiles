@@ -3,7 +3,7 @@
 # make sure it's executable with:
 # chmod +x ~/.config/sketchybar/plugins/rift.sh
 
-RIFT_CLI="/Users/briankaplan/dev-current/rift/target/debug/rift-cli"
+RIFT_CLI="/Users/briankaplan/.bin/rift-cli"
 
 # If a specific workspace was passed as argument, handle its visibility
 if [ -n "$1" ]; then

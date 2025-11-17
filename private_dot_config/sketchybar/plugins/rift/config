@@ -2,7 +2,7 @@
 
 set -e
 
-RIFT_CLI="/Users/briankaplan/dev-current/rift/target/debug/rift-cli"
+RIFT_CLI="/Users/briankaplan/.bin/rift-cli"
 
 sketchybar --add event rift_workspace_changed
 
