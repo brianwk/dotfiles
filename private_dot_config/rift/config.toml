@@ -44,7 +44,7 @@ mouse_hides_on_focus = false
 # Examples:
 #   "com.apple.dock", "com.apple.systemuiserver", "com.apple.SecurityAgent",
 #   "com.raycast.macos", "com.apple.Spotlight"
-auto_focus_blacklist = ["com.microsoft.VSCode", "com.microsoft.VSCodeInsiders", "com.electron.brain.fm", "app.zen-browser.zen", "com.apple.ScreenContinuity"]
+auto_focus_blacklist = ["com.apple.iphonesimulator", "com.microsoft.VSCode", "com.microsoft.VSCodeInsiders", "com.electron.brain.fm", "app.zen-browser.zen", "com.apple.ScreenContinuity"]
 
 # Run commands on start
 #
