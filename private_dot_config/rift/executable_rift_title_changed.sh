@@ -23,7 +23,7 @@ fi
 WORK_DISPLAY_UUID="35D8FFE8-6A4B-45DF-BB20-14D3D229A5B8"
 
 typeset -A profile_map=( DEFAULT 3 PulseReport 4 Architary 5 CRC 6 BGA 7 SD 8 )
-VSCODE_PROFILE=$(echo $NEW_TITLE | ggrep -oP -- '— ([\w\s]+)$'|tr -d '— ')
+VSCODE_PROFILE=$(echo $NEW_TITLE | ggrep -oP -- '(— |^)([\w\s]+)$'|tr -d '— ')
 NEW_WORKSPACE=$profile_map[$VSCODE_PROFILE]
 if [[ -z "$NEW_WORKSPACE" ]]; then
   NEW_WORKSPACE=8
