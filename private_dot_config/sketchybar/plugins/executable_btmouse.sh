@@ -1,8 +1,8 @@
+MOUSE_CONNECTED=$(blueutil --info "MX Anywhere 3S" --format json | jq '.connected')
 
-MOUSE_PAIRED=$(blueutil --info "MX Anywhere 3S" --format json | jq '.paired')
-
-if [[ "$MOUSE_PAIRED" == "true" ]]; then
-   sketchybar --set btmouse drawing=on label.drawing=off icon="󰦋" icon.font.size=28
+if [[ "$MOUSE_CONNECTED" == "true" ]]; then
+   sketchybar --set btmouse drawing=on label.drawing=off icon="󰦋" icon.font.size=24
 else
+   blueutil --info "MX Anywhere 3S" --format json|jq
    sketchybar --set btmouse drawing=off
 fi
