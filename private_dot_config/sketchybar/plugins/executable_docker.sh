@@ -1,8 +1,9 @@
 #!/bin/bash
 
 num_containers=0
-
-if colima status native > /dev/null; then 
+colima status native 2> /dev/null
+exit_code=$?
+if [ "$exit_code" -eq 0 ]; then 
   num_containers=$(docker info -f json | jq '.ContainersRunning')
   sketchybar --set docker icon.drawing=on label.drawing=on
 else

@@ -91,7 +91,10 @@ sketchybar --add item clock right \
            --subscribe docker system_woke \
            --add item headphones right \
            --set headphones drawing=off icon.background.corner_radius=5 icon.background.height=20 icon.background.color=0x66f0f0f0 padding_right=1 padding_left=1 background.height=20 background.corner_radius=5 background.color=0x22f0f0f0 update_freq=5 script="$PLUGIN_DIR/headphones.sh" \
-           --subscribe headphones system_woke 
+           --subscribe headphones system_woke \
+           --add item btmouse right \
+           --set btmouse drawing=off icon.background.corner_radius=5 icon.background.height=20 icon.background.color=0x66f0f0f0 padding_right=1 padding_left=1 background.height=20 background.corner_radius=5 background.color=0x22f0f0f0 update_freq=5 script="$PLUGIN_DIR/btmouse.sh" \
+           --subscribe btmouse system_woke 
 
 #source $PLUGIN_DIR/aerospace/config
 source $PLUGIN_DIR/rift/config
