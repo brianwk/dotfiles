@@ -297,13 +297,15 @@ app_rules = [
   { app_id = "com.apple.Password", floating = true },
   { app_id = "com.apple.Notes", floating = true },
   { app_id = "com.apple.LinkedNotesUIService", floating = true },
+  { app_id = "com.raycast.macos", floating = true },
   { app_id = "com.apple.ScreenContinuity", floating = true },
   { title_regex = "^DevTools.*", workspace = 2, floating = true },
   { app_id = "com.apple.mail", workspace = 1 },
   { app_id = "com.apple.MobileSMS", workspace = 1 }, 
   { app_id = "com.apple.iCal", workspace = 1 }, 
   { app_id = "app.zen-browser.zen", workspace = 0 }, 
-  { app_id = "com.apple.Safari", workspace = 2 }, 
+  { app_id = "com.apple.Safari", workspace = 2 },
+  { app_id = "com.apple.Safari", ax_subrole = "AXDialog", floating = true },
   { app_id = "com.google.Chrome", workspace = 2 }, 
   { app_id = "com.apple.iphonesimulator", workspace = 3 }, 
   { title_regex = "Rust$", workspace = 8 },
@@ -390,6 +392,7 @@ comb2 = "Meta + Shift"
 "comb1 + 8" = { move_window_to_workspace = 8 }
 "comb1 + 9" = { move_window_to_workspace = 9 }
 
+//"Alt + X" = "execute display move-window-to-display --index 0"
 "Alt + T" = "switch_to_last_workspace"
 
 "Alt + Comma" = "toggle_stack"
