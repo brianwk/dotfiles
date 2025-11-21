@@ -17,8 +17,8 @@
 #   ease_in_expo, ease_out_expo, ease_in_out_expo,
 #   ease_in_circ, ease_out_circ, ease_in_out_circ
 animate = true
-animation_duration = 0.3
-animation_fps = 100.0
+animation_duration = 0.35
+animation_fps = 120.0
 animation_easing = "ease_in_out"
 
 # Space activation behavior
@@ -152,7 +152,7 @@ spacing = 0.0
 
 # experimental mission control
 [settings.ui.mission_control]
-enabled = false
+enabled = true
 # enable fade animation when entering/exiting mission control
 fade_enabled = false
 # native macos mission control fade is about 180ms
@@ -392,7 +392,6 @@ comb2 = "Meta + Shift"
 "comb1 + 8" = { move_window_to_workspace = 8 }
 "comb1 + 9" = { move_window_to_workspace = 9 }
 
-//"Alt + X" = "execute display move-window-to-display --index 0"
 "Alt + T" = "switch_to_last_workspace"
 
 "Alt + Comma" = "toggle_stack"
