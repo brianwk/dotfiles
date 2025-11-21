@@ -408,9 +408,9 @@ comb2 = "Meta + Shift"
 
 # if mission control is enabled
 # this will show an exploded view of the windows in the active workspace
-# "Alt + Ctrl + Shift + M" = "show_mission_control_current"
+"Alt + Ctrl + Shift + M" = "show_mission_control_current"
 # this will show the mission control view shown in the readme
-# "Alt + Ctrl + M" = "show_mission_control_all"
+"Alt + Ctrl + M" = "show_mission_control_all"
 
 "Alt + Shift + D" = "debug" # prints layout tree
 
