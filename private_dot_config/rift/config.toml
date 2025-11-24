@@ -414,6 +414,8 @@ comb2 = "Meta + Shift"
 "Alt + Shift + Q" = "toggle_fullscreen_within_gaps"
 "comb1 + Ctrl + Space" = "toggle_focus_floating" # briefly bring focus to floating window
 
+"comb1 + S" = { exec = "sketchybar --reload" }
+
 # smartly resize windows
 "Alt + Shift + Equal" = "resize_window_grow"
 "Alt + Shift + Minus" = "resize_window_shrink"
