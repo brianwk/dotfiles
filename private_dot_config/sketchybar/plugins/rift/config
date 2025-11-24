@@ -6,19 +6,24 @@ RIFT_CLI="/Users/briankaplan/.bin/rift-cli"
 
 sketchybar --add event rift_workspace_changed
 
-$RIFT_CLI query workspaces | jq -r '.[] | @json' | while IFS= read -r workspace_json; do
-    sid=$(echo $workspace_json | jq -r '.name' | grep -o '[0-9]')
-    echo $workspace_json | hexdump -C
-    echo "SID: "$sid | hexdump -C
-    # Label is sid which if it contains more than a number it should strip out the number in front
-    label="$sid"
-    # Strip only leading digits
-    icon=$(echo $workspace_json | jq -r '.name' | sed -E 's/^[0-9]+//')
-    if [ -z "$sid" ]; then
-      continue
-    fi
-    echo "$icon" | hexdump -C
-    $RIFT_CLI query displays | jq -r '.[] | @json' | while IFS= read -r monitor_json; do
+$RIFT_CLI query displays | jq -r '.[] | @json' | while IFS= read -r monitor_json; do
+  space_id=$(echo $monitor_json | jq -r '.space');
+  $RIFT_CLI query workspaces --space-id $space_id | jq -r '.[] | @json' | while IFS= read -r workspace_json; do
+      sid=$(echo $workspace_json | jq -r '.name' | grep -o '[0-9]')
+      echo $workspace_json | hexdump -C
+      echo "SID: "$sid | hexdump -C
+      window_count=$(echo $workspace_json | jq -r '.window_count')
+      if [[ "$window_count" == "0" ]]; then
+        continue
+      fi
+      # Label is sid which if it contains more than a number it should strip out the number in front
+      label="$sid"
+      # Strip only leading digits
+      icon=$(echo $workspace_json | jq -r '.name' | sed -E 's/^[0-9]+//')
+      if [ -z "$sid" ]; then
+        continue
+      fi
+      echo "$icon" | hexdump -C
       echo "$monitor_json" | hexdump -C
       display_uuid=$(echo $monitor_json | jq -r '.uuid');
       display_space=$(echo $monitor_json | jq -r '.space');

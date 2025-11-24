@@ -19,7 +19,7 @@
 animate = true
 animation_duration = 0.35
 animation_fps = 120.0
-animation_easing = "ease_in_out"
+animation_easing = "ease_in_cubic"
 
 # Space activation behavior
 # - If true, spaces start inactive (rift does not manage windows there)
@@ -119,6 +119,17 @@ right = 20
 [settings.layout.gaps.per_display."35D8FFE8-6A4B-45DF-BB20-14D3D229A5B8".inner]
 horizontal = 30
 vertical = 30
+
+[settings.layout.gaps.per_display."EBEF8F42-EBE8-4CE8-9E62-553D53D8FB2B".outer]
+top = 35
+left = 20
+bottom = 20
+right = 20
+
+[settings.layout.gaps.per_display."EBEF8F42-EBE8-4CE8-9E62-553D53D8FB2B".inner]
+horizontal = 30
+vertical = 30
+
 
 # Example per-display overrides:
 # Replace the quoted key with your display's UUID. Only specify values you want to override.
@@ -299,13 +310,14 @@ app_rules = [
   { app_id = "com.apple.LinkedNotesUIService", floating = true },
   { app_id = "com.raycast.macos", floating = true },
   { app_id = "com.apple.ScreenContinuity", floating = true },
-  { title_regex = "^DevTools.*", workspace = 2, floating = true },
+  #{ title_regex = "^DevTools.*", workspace = 2, floating = true },
   { app_id = "com.apple.mail", workspace = 1 },
   { app_id = "com.apple.MobileSMS", workspace = 1 }, 
   { app_id = "com.apple.iCal", workspace = 1 }, 
   { app_id = "app.zen-browser.zen", workspace = 0 }, 
   { app_id = "com.apple.Safari", workspace = 2 },
-  { app_id = "com.apple.Safari", ax_subrole = "AXDialog", floating = true },
+  { ax_subrole = "AXApplicationGroup", floating = true },
+  { ax_subrole = "AXDialog", floating = true },
   { app_id = "com.google.Chrome", workspace = 2 }, 
   { app_id = "com.apple.iphonesimulator", workspace = 3 }, 
   { title_regex = "Rust$", workspace = 8 },
