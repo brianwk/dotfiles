@@ -33,7 +33,7 @@ default_disable = false
 # - mouse_follows_focus: when focus changes, move the mouse to the focused window
 # - mouse_hides_on_focus: hide the mouse cursor after focusing a window
 focus_follows_mouse = true
-mouse_follows_focus = false 
+mouse_follows_focus = false
 mouse_hides_on_focus = false
 # focus_follows_mouse_disable_hotkey temporarily suspends focus-follows-mouse while held
 # e.g. "Fn"; omit or set to null to keep focus-follows-mouse always active
@@ -101,7 +101,7 @@ default_orientation = "perpendicular"
 
 
 [settings.layout.gaps.outer]
-top = 5 
+top = 5
 left = 5
 bottom = 5
 right = 5
@@ -181,7 +181,7 @@ swipe_vertical_tolerance = 0.4
 # Skip empty workspaces when swiping
 skip_empty = true
 # Number of fingers required for swipe
-fingers = 4 
+fingers = 4
 # Normalized horizontal distance (0..1) to trigger swipe for NSTouch-based detection
 distance_pct = 0.08
 # Haptic feedback on commit (generic | alignment | level_change)
@@ -206,7 +206,7 @@ drag_swap_fraction = 0.3
 # - workspace_auto_back_and_forth: when enabled, if you try to switch to the same workspace
 #   that's already active, it will switch to the last workspace instead
 enabled = true
-default_workspace_count = 10 
+default_workspace_count = 10
 auto_assign_windows = true
 preserve_focus_per_workspace = true
 workspace_auto_back_and_forth = false
@@ -214,12 +214,12 @@ workspace_auto_back_and_forth = false
 # Default workspace to activate on startup (0-based index).
 # If omitted, defaults to 0 (first workspace). Must be less than default_workspace_count.
 # Uncomment to change:
-default_workspace = 9 
+default_workspace = 9
 
 # Workspace names (indexed order). If fewer than default_workspace_count are provided,
 # remaining workspaces are named "Workspace X".
 # Do not provide more names than default_workspace_count.
-workspace_names = [ 
+workspace_names = [
  '0',
  '1󱉲',
  '2󰖟',
@@ -312,20 +312,23 @@ app_rules = [
   { app_id = "com.apple.ScreenContinuity", floating = true },
   #{ title_regex = "^DevTools.*", workspace = 2, floating = true },
   { app_id = "com.apple.mail", workspace = 1 },
-  { app_id = "com.apple.MobileSMS", workspace = 1 }, 
-  { app_id = "com.apple.iCal", workspace = 1 }, 
-  { app_id = "app.zen-browser.zen", workspace = 0 }, 
+  { app_id = "com.apple.MobileSMS", workspace = 1 },
+  { app_id = "com.apple.iCal", workspace = 1 },
+  { app_id = "app.zen-browser.zen", workspace = 0 },
   { app_id = "com.apple.Safari", workspace = 2 },
   { ax_subrole = "AXApplicationGroup", floating = true },
   { ax_subrole = "AXDialog", floating = true },
-  { app_id = "com.google.Chrome", workspace = 2 }, 
-  { app_id = "com.apple.iphonesimulator", workspace = 3 }, 
+  { app_id = "com.google.Chrome", workspace = 2 },
+  { app_id = "com.apple.iphonesimulator", workspace = 3 },
   { title_regex = "Rust$", workspace = 8 },
-  { title_regex = "DEFAULT$", workspace = 3 }, 
-  { title_regex = "Pulse Report$", workspace = 4 }, 
-  { title_regex = "Architary$", workspace = 5 }, 
-  { title_regex = "CRC", workspace = 6 }, 
-  { title_regex = "BGA", workspace = 7 }, 
+  { title_regex = "(softwaredeployed.com-latest|reason-ui) (— .*|$)", workspace = 8 },
+  { title_regex = "innovation. innovationbrianwk (— .*|$)", workspace = 7 },
+ # { title_regex = "innovation, innovationbrianwk (— .* |$)", workspace = 7 },
+  { title_regex = "DEFAULT$", workspace = 3 },
+  { title_regex = "Pulse Report$", workspace = 4 },
+  { title_regex = "Architary$", workspace = 5 },
+  { title_regex = "CRC", workspace = 6 },
+  { title_regex = "BGA", workspace = 7 },
   { title_regex = "INSIDERS", workspace = 8 },
   #{ app_id = "com.microsoft.VSCodeInsiders", workspace = 0 },
   # XXX: Workaround: send all Code to 8
