@@ -44,7 +44,7 @@ mouse_hides_on_focus = false
 # Examples:
 #   "com.apple.dock", "com.apple.systemuiserver", "com.apple.SecurityAgent",
 #   "com.raycast.macos", "com.apple.Spotlight"
-auto_focus_blacklist = ["com.apple.iphonesimulator", "com.microsoft.VSCode", "com.microsoft.VSCodeInsiders", "com.electron.brain.fm", "app.zen-browser.zen", "com.apple.ScreenContinuity"]
+auto_focus_blacklist = ["com.apple.iphonesimulator", "com.microsoft.VSCode", "com.microsoft.VSCodeInsiders", "com.electron.brain.fm", "com.apple.ScreenContinuity"]
 
 # Run commands on start
 #
@@ -321,9 +321,11 @@ app_rules = [
   { app_id = "com.google.Chrome", workspace = 2 },
   { app_id = "com.apple.iphonesimulator", workspace = 3 },
   { title_regex = "Rust$", workspace = 8 },
-  { title_regex = "(softwaredeployed.com-latest|reason-ui) (— .*|$)", workspace = 8 },
-  { title_regex = "innovation. innovationbrianwk (— .*|$)", workspace = 7 },
- # { title_regex = "innovation, innovationbrianwk (— .* |$)", workspace = 7 },
+  { title_regex = "(softwaredeployed.com-latest|reason-ui)( — .*|$)", workspace = 8 },
+  { title_regex = "innovation. innovationbrianwk( — .*|$)", workspace = 7 },
+  { title_regex = "crc( — .* |$)", workspace = 6 },
+  { title_regex = "architary-nextjs( — .*|$)", workspace = 5 },
+  { title_regex = "(PulseReport, pulse-report-invite-site|PulseReportFastApi)( — .*|$)", workspace = 4 },
   { title_regex = "DEFAULT$", workspace = 3 },
   { title_regex = "Pulse Report$", workspace = 4 },
   { title_regex = "Architary$", workspace = 5 },

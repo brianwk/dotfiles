@@ -23,7 +23,7 @@ default=(
   padding_left=4
   padding_right=4
   icon.font="Hack Nerd Font:Bold:18.0"
-  label.font="Menlo:Bold:12.0"
+  label.font="Hack Nerd Font"
   icon.color=0xff2f2f2f
   label.color=0xff2f2f2f
   icon.padding_left=4
@@ -82,13 +82,16 @@ sketchybar --add item clock right \
            --set volume icon.background.corner_radius=5 icon.background.height=20 icon.background.color=0x66f0f0f0 padding_right=1 padding_left=1 background.height=20 background.corner_radius=5 background.color=0x22f0f0f0 script="$PLUGIN_DIR/volume.sh" \
            --subscribe volume volume_change \
            --add item battery right \
-           --set battery icon.background.corner_radius=5 icon.background.height=20 icon.background.color=0x66f0f0f0 padding_right=1 padding_left=1 background.height=20 background.corner_radius=5 background.color=0x22f0f0f0 update_freq=120 script="$PLUGIN_DIR/battery.sh" \
+           --set battery label.font="Hack Nerd Font" icon.background.corner_radius=5 icon.background.height=20 icon.background.color=0x66f0f0f0 padding_right=1 padding_left=1 background.height=20 background.corner_radius=5 background.color=0x22f0f0f0 update_freq=120 script="$PLUGIN_DIR/battery.sh" \
            --subscribe battery system_woke power_source_change \
            --add alias "Control Center,WiFi" right \
            --set "Control Center,WiFi" alias.color=0xff151515 alias.scale=0.8 icon.drawing=off label.drawing=off padding_right=1 padding_left=1 background.height=20 background.corner_radius=5 background.color=0x66f0f0f0 \
            --add item docker right \
            --set docker icon="" label.drawing=off icon.drawing=off icon.background.corner_radius=5 icon.background.height=20 icon.background.color=0x66f0f0f0 padding_right=1 padding_left=1 background.height=20 background.corner_radius=5 background.color=0x22f0f0f0 update_freq=5 script="$PLUGIN_DIR/docker.sh" \
            --subscribe docker system_woke \
+           --add item homebrew right \
+           --set homebrew icon="" label.drawing=off icon.drawing=off icon.background.corner_radius=5 icon.background.height=20 icon.background.color=0x66f0f0f0 padding_right=1 padding_left=1 background.height=20 background.corner_radius=5 background.color=0x22f0f0f0 update_freq=5 script="$PLUGIN_DIR/homebrew.sh" \
+           --subscribe homebrew system_woke \
            --add item headphones_battery right \
            --set headphones_battery drawing=off icon.drawing=off padding_right=1 padding_left=1 background.height=20 background.corner_radius=5 background.color=0x22f0f0f0f0 \
            --subscribe headphones_battery system_woke \
@@ -106,7 +109,7 @@ sketchybar --add item clock right \
 source $PLUGIN_DIR/rift/config
 
 sketchybar --add event sketchybar --add item front_app q \
-    --set front_app icon=󰣆 icon.font.size=16 icon.background.color=0x66f0f0f0 icon.background.corner_radius=5 icon.background.height=20 label.font.size=16 label.y_offset=-1 background.height=20 background.corner_radius=5 background.padding_left=8 background.color=0x22f0f0f0 label.padding_right=4 icon.padding_left=5 icon.padding_right=5 padding_left=8 padding_right=0 script="$CONFIG_DIR/plugins/front_app.sh" \
+    --set front_app icon=󰣆 icon.font.size=16 icon.background.color=0x66f0f0f0 icon.background.corner_radius=5 icon.background.height=20 label.font="Hack Nerd Font" label.font.size=16 label.y_offset=-1 background.height=20 background.corner_radius=5 background.padding_left=8 background.color=0x22f0f0f0 label.padding_right=4 icon.padding_left=5 icon.padding_right=5 padding_left=8 padding_right=0 script="$CONFIG_DIR/plugins/front_app.sh" \
     --subscribe front_app front_app_switched
 
 ##### Force all scripts to run the first time (never do this in a script) #####
