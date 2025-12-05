@@ -13,9 +13,9 @@ $RIFT_CLI query displays | jq -r '.[] | @json' | while IFS= read -r monitor_json
       echo $workspace_json | hexdump -C
       echo "SID: "$sid | hexdump -C
       window_count=$(echo $workspace_json | jq -r '.window_count')
-      if [[ "$window_count" == "0" ]]; then
-        continue
-      fi
+      #if [[ "$window_count" == "0" ]]; then
+      #  continue
+      #fi
       # Label is sid which if it contains more than a number it should strip out the number in front
       label="$sid"
       # Strip only leading digits
