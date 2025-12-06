@@ -1,0 +1,18 @@
+[[language]]
+name = "typescript"
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "javascript"
+formatter = { command = "prettier", args = ["--parser", "typescript"] } # Use typescript parser for JS as well
+auto-format = true
+#[[language]]
+#name = "typescript"
+#file-types = ["ts", "tsx"]
+#language-servers = ["typescript-language-server"]
+
+#[[language]]
+#name = "rescript"
+#file-types = ["res", "resi"]
+#language-servers = ["rescript-language-server"]

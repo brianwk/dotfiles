@@ -1,0 +1,6 @@
+#!/bin/zsh
+
+PANE=$(wezterm cli split-pane --bottom --percent 20)
+wezterm cli split-pane --right --pane-id $PANE
+
+hx .

@@ -1,4 +1,6 @@
-FIGLET_FONT="/Users/briankaplan/.config/phm-vga.flf"
+#!/bin/zsh
+
+FIGLET_FONT="$HOME/.config/phm-vga.flf"
 if [[ $TERM_PROGRAM == "vscode" || $TERM_PROGRAM == "zed" ]]; then
   FIGLET_FONT="banner3"
 fi
