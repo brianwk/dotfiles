@@ -1,2 +1,5 @@
+shift + ctrl - 4 : wezterm start -- zws.sh PulseReport
+shift + ctrl - 5 : wezterm start -- zws.sh architary
+
 alt-x : /Users/briankaplan/.config/rift/rift_move_to_display.sh
 alt-z : /Users/briankaplan/.config/rift/rift_cycle_display.sh

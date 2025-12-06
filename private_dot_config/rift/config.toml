@@ -319,13 +319,13 @@ app_rules = [
 #  { ax_subrole = "AXApplicationGroup", floating = true },
 #  { ax_subrole = "AXDialog", floating = true },
   { app_id = "com.google.Chrome", workspace = 2 },
-  { app_id = "com.apple.iphonesimulator", workspace = 3 },
+  { app_id = "com.apple.iphonesimulator", floating = true },
   { title_regex = "Rust$", workspace = 8 },
   { title_regex = "(executor-full-stack|softwaredeployed.com-latest|^OpenLessor,.*)( — .*|$)", workspace = 8 },
   { title_regex = "innovation. innovationbrianwk( — .*|$)", workspace = 7 },
   { title_regex = "crc( — .* |$)", workspace = 6 },
   { title_regex = "architary-nextjs( — .*|$)", workspace = 5 },
-  { title_regex = "(PulseReport, pulse-report-invite-site|PulseReportFastApi)( — .*|$)", workspace = 4 },
+  { title_regex = "^PulseReport", workspace = 4 },
   { title_regex = "DEFAULT$", workspace = 3 },
   { title_regex = "Pulse Report$", workspace = 4 },
   { title_regex = "Architary$", workspace = 5 },
@@ -417,7 +417,7 @@ comb2 = "Meta + Shift"
 "Alt + Shift + Space" = "toggle_window_floating"
 "Alt + Q" = "toggle_fullscreen"
 "Alt + Shift + Q" = "toggle_fullscreen_within_gaps"
-"comb1 + Ctrl + Space" = "toggle_focus_floating" # briefly bring focus to floating window
+"comb1 + E" = "toggle_focus_floating" # briefly bring focus to floating window
 
 "comb1 + S" = { exec = "sketchybar --reload" }
 

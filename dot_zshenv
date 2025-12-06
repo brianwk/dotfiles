@@ -2,5 +2,5 @@ export COLIMA_VM="default"
 export COLIMA_VM_SOCKET="${HOME}/.colima/${COLIMA_VM}/docker.sock"
 export DOCKER_HOST="unix://${COLIMA_VM_SOCKET}"
 # uv
-export PATH="/Users/briankaplan/.bin:/Users/briankaplan/nvim-macos-arm64/bin:/opt/homebrew/bin/:/Users/briankaplan/.local/bin:$PATH"
+export PATH="/usr/local/bin:/Users/briankaplan/.bin:/Users/briankaplan/nvim-macos-arm64/bin:/opt/homebrew/bin/:/Users/briankaplan/.local/bin:$PATH"
 . "$HOME/.cargo/env"
