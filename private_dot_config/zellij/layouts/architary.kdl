@@ -4,25 +4,20 @@ layout {
         pane size="75%" focus=true split_direction="vertical" {
             pane command="hx" size="65%" {
                 args "."
-                start_suspended false
             }
             pane size="35%" {
                 pane command="gitui" size="66%" {
-                    start_suspended false
                 }
                 pane command="npm" size="33%" {
                     args "exec" "convex" "dev"
-                    start_suspended false
                 }
             }
         }
         pane size="25%" split_direction="vertical" {
             pane command="zsh" size="65%" {
-                start_suspended false
             }
             pane command="node" size="35%" {
                 args "/opt/homebrew/bin//yarn" "dev"
-                start_suspended false
             }
         }
         pane size=1 borderless=true {

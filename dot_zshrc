@@ -129,5 +129,6 @@ case ":$PATH:" in
   *) export PATH="$PNPM_HOME:$PATH" ;;
 esac
 # pnpm end
-alias architary="zellij attach architary --create --layout ~/.config/zellij/architary.kdl"
-alias pulsereport="zellij attach PulseReport --create --layout ~/.config/zellij/pulsereport.kdl"
+# More work needed here...
+alias architary="zws.sh architary"
+alias pulsereport="zwsh.sh PulseReport"
