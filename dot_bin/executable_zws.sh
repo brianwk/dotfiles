@@ -8,3 +8,7 @@ zellij --session $NAME --layout $NAME 2>1
 if [[ $? == 1 ]] then
   zellij --session $NAME --new-session-with-layout $NAME;
 fi
+
+if [[ $? == 1 ]] then
+  zellij attach $NAME;
+fi

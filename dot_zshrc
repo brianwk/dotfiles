@@ -130,5 +130,7 @@ case ":$PATH:" in
 esac
 # pnpm end
 # More work needed here...
+# trying to switch to helix..
+alias nvim="hx"
 alias architary="zws.sh architary"
 alias pulsereport="zws.sh PulseReport"
