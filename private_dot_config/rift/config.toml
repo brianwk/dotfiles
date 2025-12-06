@@ -294,6 +294,9 @@ workspace_names = [
 #       ]
 #
 # By default there are no app rules; add or uncomment rules below as needed.
+
+reapply_app_rules_on_title_change = true
+
 app_rules = [
   { app_id = "com.sbmpost.AutoRaise", floating = true },
   { app_id = "com.apple.TV", floating = true },
@@ -324,8 +327,8 @@ app_rules = [
   { title_regex = "(executor-full-stack|softwaredeployed.com-latest|^OpenLessor,.*)( — .*|$)", workspace = 8 },
   { title_regex = "innovation. innovationbrianwk( — .*|$)", workspace = 7 },
   { title_regex = "crc( — .* |$)", workspace = 6 },
-  { title_regex = "architary-nextjs( — .*|$)", workspace = 5 },
-  { title_regex = "^PulseReport", workspace = 4 },
+  { app_id = "com.github.wez.wezterm", title_regex = "^architary.*", workspace = 5 },
+  { app_id = "com.github.wez.wezterm", title_regex = "^PulseReport.*", workspace = 4 },
   { title_regex = "DEFAULT$", workspace = 3 },
   { title_regex = "Pulse Report$", workspace = 4 },
   { title_regex = "Architary$", workspace = 5 },
