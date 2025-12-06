@@ -131,4 +131,4 @@ esac
 # pnpm end
 # More work needed here...
 alias architary="zws.sh architary"
-alias pulsereport="zwsh.sh PulseReport"
+alias pulsereport="zws.sh PulseReport"
