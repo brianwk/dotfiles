@@ -29,7 +29,16 @@ name = "css"
 language-servers = [ "tailwindcss-ls", "vscode-css-language-server" ]
 
 
-#[[language]]
-#name = "rescript"
-#file-types = ["res", "resi"]
-#language-servers = ["rescript-language-server"]
+[[language]]
+roots = ["rescript.json"]
+name = "rescript"
+auto-format = true
+formatter = { command = "prettier", args = ["--parser", "rescript"] }
+language-servers = [ "rescript-language-server" ]
+file-types = ["resi"]
+
+[[language]]
+roots = ["rescript.json"]
+name = "rescript"
+file-types = ["res"]
+language-servers = [ "tailwindcss-ls", "rescript-language-server" ]

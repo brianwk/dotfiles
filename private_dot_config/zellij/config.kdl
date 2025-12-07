@@ -80,7 +80,7 @@ keybinds clear-defaults=true {
         bind "up" { MovePane "up"; }
         bind "right" { MovePane "right"; }
         bind "h" { MovePane "left"; }
-        bind "Ctrl h" { SwitchToMode "normal"; }
+        bind "Ctrl w" { SwitchToMode "normal"; }
         bind "j" { MovePane "down"; }
         bind "k" { MovePane "up"; }
         bind "l" { MovePane "right"; }
@@ -164,7 +164,7 @@ keybinds clear-defaults=true {
         bind "Ctrl q" { Quit; }
     }
     shared_except "locked" "move" {
-        bind "Ctrl h" { SwitchToMode "move"; }
+        bind "Ctrl w" { SwitchToMode "move"; }
     }
     shared_except "locked" "session" {
         bind "Ctrl o" { SwitchToMode "session"; }
@@ -307,7 +307,7 @@ web_client {
 // Choose the theme that is specified in the themes section.
 // Default: default
 // 
-theme "catppucin-frappe"
+theme "default"
  
 // Choose the base input mode of zellij.
 // Default: normal
