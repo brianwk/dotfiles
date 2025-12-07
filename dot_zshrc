@@ -133,4 +133,5 @@ esac
 # trying to switch to helix..
 alias nvim="hx"
 alias architary="zws.sh architary"
+alias executor="zws.sh executor"
 alias pulsereport="zws.sh PulseReport"
