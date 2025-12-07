@@ -7,16 +7,21 @@ args = ["--stdio"]
 command = "vtsls"
 args = ["--stdio"]
 
+[language-server.rescript-language-server]
+config = { inlayHints=  { enable = true } }
+
 [[language]]
 name = "typescript"
 auto-format = true
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
 [[language]]
+roots = ["package.json"]
 name = "jsx"
 language-servers = [ "tailwindcss-ls", "typescript-language-server" ]
 
 [[language]]
+roots = ["package.json"]
 name = "tsx"
 language-servers = [ "tailwindcss-ls", "typescript-language-server" ]
 

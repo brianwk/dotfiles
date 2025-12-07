@@ -322,7 +322,7 @@ app_rules = [
 #  { ax_subrole = "AXApplicationGroup", floating = true },
 #  { ax_subrole = "AXDialog", floating = true },
   { app_id = "com.google.Chrome", workspace = 2 },
-  { app_id = "com.apple.iphonesimulator", workspace = 4, floating = true },
+  { app_id = "com.apple.iphonesimulator", workspace = 4 },
   { title_regex = "Rust$", workspace = 8 },
   { title_regex = "(executor-full-stack|softwaredeployed.com-latest|^OpenLessor,.*)( — .*|$)", workspace = 8 },
   { title_regex = "innovation. innovationbrianwk( — .*|$)", workspace = 7 },
