@@ -1,5 +1,5 @@
 export GITHUB_USERNAME="brianwk"
-
+ssh-add ~/dev/git/git.key
 export EDITOR="hx"
 # If you come from bash you might have to change your $PATH.
 export PATH=/opt/homebrew/opt/php@8.2/sbin:/opt/homebrew/opt/php@8.2/bin:$PATH
