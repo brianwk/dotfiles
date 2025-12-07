@@ -20,36 +20,25 @@ layout {
         pane size=1 borderless=true {
             plugin location="zellij:status-bar"
         }
-        floating_panes {
-            pane cwd="dev-current/treyapp/PulseReport" {
-                height 47
-                width 241
-                x 355
-                y 81
-            }
-        }
     }
     tab name="Python" hide_floating_panes=true {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
         pane size="85%" split_direction="vertical" {
-            pane focus=true command="hx" cwd="dev-current/treyapp/PulseReportFastApi" size="65%" {
+            pane focus=true command="hx" cwd="dev-current/treyapp/PulseReportFastApi" size="85%" {
                 args "."
             }
-            pane command="gitui" cwd="dev-current/treyapp/PulseReportFastApi" size="35%" {
+            pane stacked=true size="15%" {
+                pane command="gitui" cwd="dev-current/treyapp/PulseReportFastApi" expanded=true
+                pane command="docker-compose" cwd="dev-current/treyapp/dynamodb" {
+                    args "run" "-P" "dynamodb-local"
+                }
+                pane command="redis-server" cwd="dev-current/treyapp"
             }
         }
-        pane size="15%" stacked=true {
-            pane command="/opt/homebrew/Cellar/python@3.13/3.13.10/Frameworks/Python.framework/Versions/3.13/Resources/Python.app/Contents/MacOS/Python" cwd="dev-current/treyapp/PulseReportFastApi" expanded=true {
-                args "/Users/briankaplan/dev-current/treyapp/PulseReportFastApi/.venv/bin/uvicorn" "main:app" "--port" "8888" "--reload" "--log-level" "debug" "--host" "0.0.0.0"
-            }
-            pane command="docker-compose" cwd="dev-current/treyapp/dynamodb" {
-                args "run" "-P" "dynamodb-local"
-            }
-            pane command="/bin/bash" cwd="dev-current/treyapp" {
-                args "/opt/homebrew/bin//redis-stack-server"
-            }
+        pane command="/Users/briankaplan/dev-current/treyapp/PulseReportFastApi/.venv/bin/uvicorn" cwd="dev-current/treyapp/PulseReportFastApi" {
+            args "main:app" "--port" "8888" "--reload" "--log-level" "debug" "--host" "0.0.0.0"
         }
         pane size=1 borderless=true {
             plugin location="zellij:status-bar"
@@ -59,10 +48,13 @@ layout {
         pane size=1 borderless=true {
             plugin location="zellij:tab-bar"
         }
-        pane command="hx" cwd="dev-current/treyapp/pulse-report-invite-site" size="85%" {
-            args "."
+        pane size="85%" split_direction="vertical" {
+            pane command="hx" cwd="dev-current/treyapp/pulse-report-invite-site" size="85%" {
+                args "."
+            }
+            pane command="gitui" cwd="dev-current/treyapp/pulse-report-invite-site" size="15%"
         }
-        pane command="node" cwd="dev-current/treyapp/pulse-report-invite-site" size="15%" {
+        pane size="15%" command="node" cwd="dev-current/treyapp/pulse-report-invite-site" {
             args "/opt/homebrew/bin//pnpm" "dev"
         }
         pane size=1 borderless=true {

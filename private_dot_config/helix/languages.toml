@@ -1,16 +1,33 @@
-[[language]]
-name = "typescript"
-formatter = { command = "prettier", args = ["--parser", "typescript"] }
-auto-format = true
+[language-server.tailwindcss-ls]
+command = "tailwindcss-language-server"
+args = ["--stdio"]
+#config = { userLanguages = { astro = "html", "*.astro" = "html" } }
+
+[language-server.typescript-language-server]
+command = "vtsls"
+args = ["--stdio"]
 
 [[language]]
-name = "javascript"
-formatter = { command = "prettier", args = ["--parser", "typescript"] } # Use typescript parser for JS as well
+name = "typescript"
 auto-format = true
-#[[language]]
-#name = "typescript"
-#file-types = ["ts", "tsx"]
-#language-servers = ["typescript-language-server"]
+formatter = { command = "prettier", args = ["--parser", "typescript"] }
+
+[[language]]
+name = "jsx"
+language-servers = [ "tailwindcss-ls", "typescript-language-server" ]
+
+[[language]]
+name = "tsx"
+language-servers = [ "tailwindcss-ls", "typescript-language-server" ]
+
+[[language]]
+name = "html"
+language-servers = [ "tailwindcss-ls", "vscode-html-language-server" ]
+
+[[language]]
+name = "css"
+language-servers = [ "tailwindcss-ls", "vscode-css-language-server" ]
+
 
 #[[language]]
 #name = "rescript"

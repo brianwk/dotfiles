@@ -16,8 +16,8 @@ layout {
         pane size="25%" split_direction="vertical" {
             pane command="zsh" size="65%" {
             }
-            pane command="node" size="35%" {
-                args "/opt/homebrew/bin//yarn" "dev"
+            pane command="yarn" size="35%" {
+                args "dev"
             }
         }
         pane size=1 borderless=true {
