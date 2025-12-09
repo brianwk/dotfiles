@@ -8,8 +8,8 @@ layout {
             pane size="35%" {
                 pane command="gitui" size="66%" {
                 }
-                pane command="npm" size="33%" {
-                    args "exec" "convex" "dev"
+                pane command="yarn" size="33%" {
+                    args "convex" "dev"
                 }
             }
         }

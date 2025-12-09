@@ -1,3 +1,43 @@
+[language-server.pyright]
+command = "basedpyright-langserver"
+args = ["--stdio"]
+
+[language-server.pyright.config]
+#basedpyright.analysis.venvPath = "."
+#basedpyright.analysis.venv = ".venv"
+basedpyright.analysis.lint = true
+basedpyright.analysis.inlayHint.enable = true
+basedpyright.analysis.autoSearchPaths = true
+basedpyright.analysis.diagnosticMode = "workspace"
+basedpyright.analysis.useLibraryCodeForType = true
+basedpyright.analysis.logLevel = "Error"
+basedpyright.analysis.typeCheckingMode = "off"
+basedpyright.analysis.autoImportCompletion = true
+basedpyright.analysis.reportOptionalSubscript = false
+basedpyright.analysis.reportOptionalMemberAccess = false
+basedpyright.analysis.inlayHints.enable = true
+basedpyright.analysis.inlayHints.variableTypes = true
+basedpyright.analysis.inlayHints.callArgumentNames = true
+basedpyright.analysis.inlayHints.genericTypes = true
+
+[language-server.ruff]
+command = "ruff"
+args = ["server", "-q", "--preview"] 
+
+
+[[language]]
+name = "python"
+scope = "source.python"
+injection-regex = "python"
+file-types = ["py", "pyi", "py3", "pyw", "ptl", "rpy", "cpy", "ipy", "pyt", { glob = ".python_history" }, { glob = ".pythonstartup" }, { glob = ".pythonrc" }, { glob = "SConstruct" }, { glob = "SConscript" }]
+shebangs = ["python"]
+roots = ["pyproject.toml", "setup.py", "poetry.lock", "pyrightconfig.json", "requirements.txt", ".venv/"]
+comment-token = "#"
+language-servers = [ {name = "pyright", except-features=["diagnostics"]}, "ruff" ]
+indent = { tab-width = 4, unit = "    " }
+auto-format = true
+formatter = { command = "ruff", args = ["format", "-" ] }
+
 [language-server.tailwindcss-ls]
 command = "tailwindcss-language-server"
 args = ["--stdio"]
@@ -16,14 +56,11 @@ auto-format = true
 formatter = { command = "prettier", args = ["--parser", "typescript"] }
 
 [[language]]
-roots = ["package.json"]
-name = "jsx"
+name = "tsx"
+roots = ["tsconfig.json"]
+file-types = ["jsx", "tsx"]
 language-servers = [ "tailwindcss-ls", "typescript-language-server" ]
 
-[[language]]
-roots = ["package.json"]
-name = "tsx"
-language-servers = [ "tailwindcss-ls", "typescript-language-server" ]
 
 [[language]]
 name = "html"

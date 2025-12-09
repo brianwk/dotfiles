@@ -17,3 +17,7 @@ select = "underline"
 
 [editor.indent-guides]
 render = true
+
+[keys.normal]
+"Cmd-," = "remove_primary_selection"
+A-c = "split_selection_on_newline"

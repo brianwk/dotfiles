@@ -1,6 +1,8 @@
 local wezterm = require 'wezterm'
 local config = {}
 
+config.front_end = "WebGpu"
+config.max_fps = 144
 config.font_size = 12 
 config.font = wezterm.font('Hack Nerd Font', { weight = 'Bold' })
 config.color_scheme = 'Catppuccin Frappe'
