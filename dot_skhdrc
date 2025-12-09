@@ -1,5 +1,5 @@
-shift + ctrl - 4 : wezterm-gui  start --workspace PulseReport --cwd ~/dev-current/treyapp/PulseReport
-shift + ctrl - 5 : wezterm-gui  start --workspace architary --cwd ~/dev-current/architary/architary-nextjs
+shift + ctrl - 4 : wezterm-gui  start --workspace PulseReport --cwd $HOME/dev-current/treyapp/PulseReport
+shift + ctrl - 5 : wezterm-gui  start --workspace architary --cwd $HOME/dev-current/architary/architary-nextjs
 
 alt-x : /Users/briankaplan/.config/rift/rift_move_to_display.sh
 alt-z : /Users/briankaplan/.config/rift/rift_cycle_display.sh
