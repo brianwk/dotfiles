@@ -295,7 +295,7 @@ workspace_names = [
 #
 # By default there are no app rules; add or uncomment rules below as needed.
 
-reapply_app_rules_on_title_change = false
+reapply_app_rules_on_title_change = true
 
 app_rules = [
   { app_id = "com.sbmpost.AutoRaise", floating = true },
@@ -324,17 +324,12 @@ app_rules = [
   { app_id = "com.google.Chrome", workspace = 2 },
   { app_id = "com.apple.iphonesimulator", workspace = 4 },
   { title_regex = "Rust$", workspace = 8 },
-  { title_regex = "(executor|softwaredeployed.com-latest|^OpenLessor,.*)( — .*|$)", workspace = 8 },
-  { title_regex = "innovation. innovationbrianwk( — .*|$)", workspace = 7 },
-  { title_regex = "crc( — .* |$)", workspace = 6 },
-  { title_regex = "^architary.*", workspace = 5 },
-  { title_regex = "^PulseReport.*", workspace = 4 },
-  { title_regex = "DEFAULT$", workspace = 3 },
-  { title_regex = "Pulse Report$", workspace = 4 },
-  { title_regex = "Architary$", workspace = 5 },
-  { title_regex = "CRC", workspace = 6 },
-  { title_regex = "BGA", workspace = 7 },
-  { title_regex = "INSIDERS", workspace = 8 },
+  { title_regex = "^executor$", workspace = 8 },
+  { title_regex = "^architary$", workspace = 5 },
+  { title_regex = "^PulseReport$", workspace = 4 },
+  { title_regex = "^Wezterm$", workspace = 9 },
+  { title_regex = "^CRC$", workspace = 6 },
+  { title_regex = "^BGA$", workspace = 7 },
   #{ app_id = "com.microsoft.VSCodeInsiders", workspace = 0 },
   # XXX: Workaround: send all Code to 8
   #{ app_id ="com.microsoft.VSCode", workspace = 8 },

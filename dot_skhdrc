@@ -1,7 +1,10 @@
 
-shift + ctrl - 3 : WORKSPACE="PulseReportFastApi" wezterm-gui  start --workspace PulseReportFastApi --cwd $HOME/dev-current/treyapp/PulseReportFastApi
-shift + ctrl - 4 : WORKSPACE="PulseReport" wezterm-gui  start --workspace PulseReport --cwd $HOME/dev-current/treyapp/PulseReport
-shift + ctrl - 5 : WORKSPACE="architary" wezterm-gui  start --workspace architary --cwd $HOME/dev-current/architary/architary-nextjs
-
+shift + ctrl - 2 : WORKSPACE="PulseReportWebsite" wezterm-gui start --always-new-process --workspace PulseReportWebsite --cwd $HOME/dev-current/treyapp/pulse-report-invite-site
+shift + ctrl - 3 : WORKSPACE="PulseReportFastApi" wezterm-gui start --always-new-process --workspace PulseReportFastApi --cwd $HOME/dev-current/treyapp/PulseReportFastApi
+shift + ctrl - 4 : WORKSPACE="PulseReport" wezterm-gui start --always-new-process --workspace PulseReport --cwd $HOME/dev-current/treyapp/PulseReport
+shift + ctrl - 5 : WORKSPACE="architary" wezterm-gui start --always-new-process --workspace architary --cwd $HOME/dev-current/architary/architary-nextjs
+shift + ctrl - 6 : WORKSPACE="CRC" wezterm-gui start --always-new-process --workspace CRC --cwd $HOME/dev-current/crc
+shift + ctrl - 7 : WORKSPACE="BGA" wezterm-gui start --always-new-process --workspace BGA --cwd $HOME/dev-current/bga
+shift + ctrl - 8 : WORKSPACE="executor" wezterm-gui start --always-new-process --workspace executor --cwd $HOME/dev-current/executor-full-stack
 alt-x : /Users/briankaplan/.config/rift/rift_move_to_display.sh
 alt-z : /Users/briankaplan/.config/rift/rift_cycle_display.sh
