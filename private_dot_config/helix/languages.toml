@@ -72,15 +72,22 @@ language-servers = [ "tailwindcss-ls", "vscode-css-language-server" ]
 
 
 [[language]]
-roots = ["rescript.json"]
+roots = ["package.json", "rescript.json"]
 name = "rescript"
 auto-format = true
-formatter = { command = "prettier", args = ["--parser", "rescript"] }
 language-servers = [ "rescript-language-server" ]
 file-types = ["resi"]
 
 [[language]]
-roots = ["rescript.json"]
+roots = ["package.json", "rescript.json"]
 name = "rescript"
 file-types = ["res"]
 language-servers = [ "tailwindcss-ls", "rescript-language-server" ]
+auto-format = true
+formatter = { command = "rescript", args = ["format", "--stdin", ".res"] }
+[[language]]
+scope = "source.ocaml"
+name = "ocaml"
+roots = ["dune-project"]
+file-types = ["re"]
+language-servers = [ "ocamllsp" ]

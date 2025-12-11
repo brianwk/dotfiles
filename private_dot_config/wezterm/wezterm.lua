@@ -131,6 +131,7 @@ wezterm.on("gui-startup", function(cmd)
           size = 0.75
       })
       setup(editor_pane, project, config.cwd)
+      window:gui_window():maximize()
     end
 end)
 

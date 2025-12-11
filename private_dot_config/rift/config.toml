@@ -423,6 +423,8 @@ comb2 = "Meta + Shift"
 "Alt + Shift + Equal" = "resize_window_grow"
 "Alt + Shift + Minus" = "resize_window_shrink"
 
+"Alt + Shift + Z" = "toggle_space_activated"
+
 # if mission control is enabled
 # this will show an exploded view of the windows in the active workspace
 "Alt + Ctrl + Shift + M" = "show_mission_control_current"
